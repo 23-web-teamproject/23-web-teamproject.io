@@ -132,7 +132,6 @@ dist
 
 # custom folder
 src/
-docs/
 
 # custom files
 *.identifier
