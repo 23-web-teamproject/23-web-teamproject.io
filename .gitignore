@@ -130,8 +130,9 @@ dist
 .pnp.*
 
 
-# custom folder
+## custom folder
 src/
+docs/
 
 ## custom files
 *.identifier
