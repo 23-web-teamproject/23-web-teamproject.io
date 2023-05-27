@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home: Source - ./src/engine/core/destroy-manager.js</title>
+    <script src="static/classy.js"></script>
+    <script src="static/highlight/highlight.min.js"></script>
+    <script src="static/highlight/langs/javascript.min.js"></script>
+    <script src="static/highlight/langs/json.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="static/highlight/highlight.min.css">
+    <link type="text/css" rel="stylesheet" href="static/classy.css">
+</head>
+
+<body>
+    <header class="page-header">
+        <h1 class="package-details">
+            <a class="package-name" href="./">
+                
+                <span>Home</span>
+            </a>
+            
+        </h1>
+        <h2 class="page-title">Source: <span class="ancestors"></span>./src/engine/core/destroy-manager.js</h2>
+        <div class="page-links">
+            
+            <div class="page-nav-toggle tiny-page-nav-toggle">
+                <input type="checkbox" name="tiny-page-nav-toggle" id="tiny-page-nav-toggle" autocomplete="off"/>
+                <label for="tiny-page-nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+        </div>
+    </header>
+    <nav class="page-nav">
+        <label class="hidden" for="tiny-page-nav"></label>
+        <input class="hidden tiny-page-nav-target" type="checkbox" id="tiny-page-nav" autocomplete="off"/>
+        <div class="nav-content">
+            <h3>Classes</h3><ul><li><a href="BoxCollisionResolver.html">BoxCollisionResolver</a></li><li><a href="CircleCollisionResolver.html">CircleCollisionResolver</a></li><li><a href="Circle.html">Circle</a></li><li><a href="CollisionResolver.html">CollisionResolver</a></li><li><a href="DestroyManager.html">DestroyManager</a></li><li><a href="GameObject.html">GameObject</a></li><li><a href="HTMLManager.html">HTMLManager</a></li><li><a href="InputManager.html">InputManager</a></li><li><a href="LayerManager.html">LayerManager</a></li><li><a href="PhysicsManager.html">PhysicsManager</a></li><li><a href="Rect.html">Rect</a></li><li><a href="RenderManager.html">RenderManager</a></li><li><a href="ResourceLoaderFactory.html">ResourceLoaderFactory</a></li><li><a href="ResourceLoader.html">ResourceLoader</a></li><li><a href="AudioResourceLoader.html">AudioResourceLoader</a></li><li><a href="ImageResourceLoader.html">ImageResourceLoader</a></li><li><a href="ResourceManager.html">ResourceManager</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="Sprite.html">Sprite</a></li><li><a href="Text.html">Text</a></li><li><a href="Collider.html">Collider</a></li><li><a href="BoxCollider.html">BoxCollider</a></li><li><a href="CircleCollider.html">CircleCollider</a></li><li><a href="Color.html">Color</a></li><li><a href="Layer.html">Layer</a></li><li><a href="DefaultLayer.html">DefaultLayer</a></li><li><a href="TerrainLayer.html">TerrainLayer</a></li><li><a href="UnitLayer.html">UnitLayer</a></li><li><a href="Manifold.html">Manifold</a></li><li><a href="Matrix.html">Matrix</a></li><li><a href="RigidBody.html">RigidBody</a></li><li><a href="Transform.html">Transform</a></li><li><a href="Vector.html">Vector</a></li><li><a href="Engine.html">Engine</a></li><li><a href="Particle.html">Particle</a></li><li><a href="ParticleEffect.html">ParticleEffect</a></li><li><a href="SoundEffect.html">SoundEffect</a></li><li><a href="Path.html">Path</a></li><li><a href="Timer.html">Timer</a></li></ul><h3>Globals</h3><ul><li><a href="global.html#KEY_STATUS">KEY_STATUS</a></li><li><a href="global.html#makeForm">makeForm</a></li><li><a href="global.html#getAvailableFpsAndResolution">getAvailableFpsAndResolution</a></li><li><a href="global.html#getAvailableResolution">getAvailableResolution</a></li><li><a href="global.html#getAvailableFpsList">getAvailableFpsList</a></li><li><a href="global.html#getCurrentFps">getCurrentFps</a></li><li><a href="global.html#typeCheck">typeCheck</a></li><li><a href="global.html#typeCheckAndClamp">typeCheckAndClamp</a></li><li><a href="global.html#findKeyInObjectWithValue">findKeyInObjectWithValue</a></li><li><a href="global.html#writeErrorMessageOnDocument">writeErrorMessageOnDocument</a></li></ul>
+        </div>
+    </nav>
+    <main id="main">
+        <article class="content-container source-code">
+    <header class="section-header">
+        <h2 class="page-title subsection-title">Source: <span class="ancestors"></span>./src/engine/core/destroy-manager.js</h2>
+    </header>
+    <pre class="prettyprint source linenums"><code>import SceneManager from "/src/engine/core/scene-manager.js";
+
+import { findKeyInObjectWithValue } from "/src/engine/utils.js";
+
+/**
+ * JS에는 클래스를 삭제하는 예약어가 따로 없다.
+ * 단지 어떤 변수를 아무도 참조하지 않을 때 가비지 컬렉터(GC)가
+ * 자동으로 수집해 제거한다.
+ *
+ * 그러므로 어떤 객체를 제거하기 위해서는 그 객체를
+ * 어느 누구도 참조하지 않으면 된다.
+ * 따라서 그 객체의 자식객체들을 모두 삭제하고,
+ * 부모의 어느 프로퍼티에서도 이 객체가 존재하지 않도록 만들면 된다.
+ *
+ * object.destroy()를 실행하면 바로 삭제되는게 아니라,
+ * 현재의 update가 종료된 후 큐에 등록된 오브젝트를 삭제한다.
+ */
+class DestroyManager {
+  /**
+   * 삭제되길 기다리는 객체들을 저장한 큐
+   *
+   * @property {GameObject[]}
+   * @static
+   */
+  static objectQueue = new Array();
+
+  constructor() {}
+
+  /**
+   * 큐에 객체를 넣는다.
+   *
+   * @param {GameObject} object - 삭제될 객체
+   */
+  static push(object) {
+    DestroyManager.objectQueue.push(object);
+  }
+
+  /**
+   * 큐가 빌 때까지 큐에 들어있는 객체를 삭제한다.
+   * 삭제한다는 말은 그 객체를 참조하는 값을 모두 지운다는 말이다.
+   */
+  static destroyAll() {
+    while (DestroyManager.objectQueue.length > 0) {
+      const object = DestroyManager.objectQueue.shift();
+      // 씬 객체에 이 객체가 등록되어 있는지 확인한다.
+      let key = findKeyInObjectWithValue(
+        SceneManager.getCurrentScene(),
+        object
+      );
+      if (key !== undefined) {
+        delete SceneManager.getCurrentScene()[key];
+      }
+
+      // 이 객체의 parent에 이 객체가 등록되어 있는지 확인한다.
+      key = findKeyInObjectWithValue(object.parent, object);
+      if (key !== undefined) {
+        delete object.parent[key];
+      }
+
+      // 이 객체의 부모의 childList에서 이 객체를 제거한다.
+      const index = object.parent.childList.indexOf(object);
+      if (index != -1) {
+        object.parent.childList.splice(index, 1);
+      }
+    }
+  }
+}
+
+export default DestroyManager;
+</code></pre>
+</article>
+<script src="static/highlight/langs/line-numbers.min.js"></script>
+<script>hljs.initLineNumbersOnLoad();</script>
+<script>
+    function identifyAndScrollToLines() {
+        document.querySelectorAll(".hljs-ln-numbers").forEach(function (el) {
+            if (window.location.hash === ("#L" + el.dataset.lineNumber)) {
+                el.parentElement.classList.add("selected");
+                el.parentElement.scrollIntoView({behavior: "smooth", inline: "start"});
+            }
+        });
+    }
+    
+    window.addEventListener("load", identifyAndScrollToLines);
+    window.setTimeout(identifyAndScrollToLines, 10);
+</script>
+<aside class="content-aside">
+    
+    
+        <div class="toc-tiny">
+            <h2 class="page-title">Source: <span class="ancestors"></span>./src/engine/core/destroy-manager.js</h2>
+        </div>
+    
+</aside>
+        <footer>
+            Generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a>
+            using <a href="https://github.com/sleelin/classy-template">classy-template</a>
+            
+                <span class="creation-timestamp">2023-05-27T15:17:44.506Z</span>
+            
+        </footer>
+    </main>
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>

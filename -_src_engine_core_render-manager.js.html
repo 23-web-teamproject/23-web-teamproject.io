@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home: Source - ./src/engine/core/render-manager.js</title>
+    <script src="static/classy.js"></script>
+    <script src="static/highlight/highlight.min.js"></script>
+    <script src="static/highlight/langs/javascript.min.js"></script>
+    <script src="static/highlight/langs/json.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="static/highlight/highlight.min.css">
+    <link type="text/css" rel="stylesheet" href="static/classy.css">
+</head>
+
+<body>
+    <header class="page-header">
+        <h1 class="package-details">
+            <a class="package-name" href="./">
+                
+                <span>Home</span>
+            </a>
+            
+        </h1>
+        <h2 class="page-title">Source: <span class="ancestors"></span>./src/engine/core/render-manager.js</h2>
+        <div class="page-links">
+            
+            <div class="page-nav-toggle tiny-page-nav-toggle">
+                <input type="checkbox" name="tiny-page-nav-toggle" id="tiny-page-nav-toggle" autocomplete="off"/>
+                <label for="tiny-page-nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+        </div>
+    </header>
+    <nav class="page-nav">
+        <label class="hidden" for="tiny-page-nav"></label>
+        <input class="hidden tiny-page-nav-target" type="checkbox" id="tiny-page-nav" autocomplete="off"/>
+        <div class="nav-content">
+            <h3>Classes</h3><ul><li><a href="BoxCollisionResolver.html">BoxCollisionResolver</a></li><li><a href="CircleCollisionResolver.html">CircleCollisionResolver</a></li><li><a href="Circle.html">Circle</a></li><li><a href="CollisionResolver.html">CollisionResolver</a></li><li><a href="DestroyManager.html">DestroyManager</a></li><li><a href="GameObject.html">GameObject</a></li><li><a href="HTMLManager.html">HTMLManager</a></li><li><a href="InputManager.html">InputManager</a></li><li><a href="LayerManager.html">LayerManager</a></li><li><a href="PhysicsManager.html">PhysicsManager</a></li><li><a href="Rect.html">Rect</a></li><li><a href="RenderManager.html">RenderManager</a></li><li><a href="ResourceLoaderFactory.html">ResourceLoaderFactory</a></li><li><a href="ResourceLoader.html">ResourceLoader</a></li><li><a href="AudioResourceLoader.html">AudioResourceLoader</a></li><li><a href="ImageResourceLoader.html">ImageResourceLoader</a></li><li><a href="ResourceManager.html">ResourceManager</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="Sprite.html">Sprite</a></li><li><a href="Text.html">Text</a></li><li><a href="Collider.html">Collider</a></li><li><a href="BoxCollider.html">BoxCollider</a></li><li><a href="CircleCollider.html">CircleCollider</a></li><li><a href="Color.html">Color</a></li><li><a href="Layer.html">Layer</a></li><li><a href="DefaultLayer.html">DefaultLayer</a></li><li><a href="TerrainLayer.html">TerrainLayer</a></li><li><a href="UnitLayer.html">UnitLayer</a></li><li><a href="Manifold.html">Manifold</a></li><li><a href="Matrix.html">Matrix</a></li><li><a href="RigidBody.html">RigidBody</a></li><li><a href="Transform.html">Transform</a></li><li><a href="Vector.html">Vector</a></li><li><a href="Engine.html">Engine</a></li><li><a href="Particle.html">Particle</a></li><li><a href="ParticleEffect.html">ParticleEffect</a></li><li><a href="SoundEffect.html">SoundEffect</a></li><li><a href="Path.html">Path</a></li><li><a href="Timer.html">Timer</a></li></ul><h3>Globals</h3><ul><li><a href="global.html#KEY_STATUS">KEY_STATUS</a></li><li><a href="global.html#makeForm">makeForm</a></li><li><a href="global.html#getAvailableFpsAndResolution">getAvailableFpsAndResolution</a></li><li><a href="global.html#getAvailableResolution">getAvailableResolution</a></li><li><a href="global.html#getAvailableFpsList">getAvailableFpsList</a></li><li><a href="global.html#getCurrentFps">getCurrentFps</a></li><li><a href="global.html#typeCheck">typeCheck</a></li><li><a href="global.html#typeCheckAndClamp">typeCheckAndClamp</a></li><li><a href="global.html#findKeyInObjectWithValue">findKeyInObjectWithValue</a></li><li><a href="global.html#writeErrorMessageOnDocument">writeErrorMessageOnDocument</a></li></ul>
+        </div>
+    </nav>
+    <main id="main">
+        <article class="content-container source-code">
+    <header class="section-header">
+        <h2 class="page-title subsection-title">Source: <span class="ancestors"></span>./src/engine/core/render-manager.js</h2>
+    </header>
+    <pre class="prettyprint source linenums"><code>import SceneManager from "/src/engine/core/scene-manager.js";
+
+import { typeCheckAndClamp } from "/src/engine/utils.js";
+
+/**
+ * 렌더링을 위해 HTML에서 제공하는 API중 하나인 &lt;canvas>를 사용한다.
+ * RenderManager는 Canvas를 다루는 기능을 제공한다.
+ *
+ * Canvas는 두 개가 있는데, 화면에 드러날 renderCanvas와
+ * 이미지에 오버레이를 씌우기 위해 쓰는 bufferCanvas가 있다.
+ *
+ * Canvas의 크기, 해상도를 바꾸는 책임도 맡는다.
+ */
+class RenderManager {
+  /**
+   * renderCanvas의 id값
+   *
+   * @property {string}
+   * @static
+   */
+  static renderCanvasId = "render-canvas";
+  /**
+   * renderCanvas의 Element요소
+   *
+   * @property {RenderCanvasContext2d}
+   * @static
+   */
+  static renderCanvas = undefined;
+  /**
+   * renderCanvans의 가로 길이
+   *
+   * @property {number}
+   * @static
+   */
+  static renderCanvasWidth;
+  /**
+   * renderCanvans의 세로 길이
+   *
+   * @property {number}
+   * @static
+   */
+  static renderCanvasHeight;
+  /**
+   * renderCanvans의 최소 가로 길이
+   *
+   * @property {number}
+   * @static
+   */
+  static renderCanvasMinWidth = 800;
+  /**
+   * renderCanvans의 최소 세로 길이
+   *
+   * @property {number}
+   * @static
+   */
+  static renderCanvasMinHeight = 600;
+  /**
+   * bufferCanvas의 id값
+   *
+   * @property {string}
+   * @static
+   */
+  static bufferCanvasId = "buffer-canvas";
+  /**
+   * bufferCanvas의 Element요소
+   *
+   * @property {RenderCanvasContext2d}
+   * @static
+   */
+  static bufferCanvas = undefined;
+
+  constructor() {}
+
+  /**
+   * 현재 씬을 렌더링한다.
+   * 1. 먼저 게임화면의 크기를 브라우저의 크기에 맞춘다.
+   * 2. 그다음 화면을 지운다.
+   * 3. 깨끗해진 화면에 현재 프레임의 모든 오브젝트를 렌더링한다.
+   */
+  static render() {
+    RenderManager.updateRenderCanvasSizeByWindowSize();
+    RenderManager.clearScreen();
+    SceneManager.getCurrentScene().render();
+  }
+
+  /**
+   * renderCanvas를 깨끗이 지운다.
+   */
+  static clearScreen() {
+    const canvas = RenderManager.getRenderCanvas();
+    canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  /**
+   * renderCanvas의 크기(width, height)를 변경한다.
+   * 크기를 변경하면 style에도 영향이 있기 때문에 renderCanvas의 CSS도 변경한다.
+   *
+   * @param {number} width - 가로 크기
+   * @param {number} height - 세로 크기
+   */
+  static changeResolution(width, height) {
+    RenderManager.renderCanvasWidth = typeCheckAndClamp(
+      width,
+      "number",
+      1280,
+      RenderManager.renderCanvasMinWidth,
+      Number.MAX_VALUE
+    );
+    RenderManager.renderCanvasHeight = typeCheckAndClamp(
+      height,
+      "number",
+      720,
+      RenderManager.renderCanvasMinHeight,
+      Number.MAX_VALUE
+    );
+
+    const renderCanvas = RenderManager.getRenderCanvas();
+    renderCanvas.width = RenderManager.renderCanvasWidth;
+    renderCanvas.height = RenderManager.renderCanvasHeight;
+    RenderManager.changeRenderCanvasStyleVariable(
+      RenderManager.renderCanvasWidth,
+      RenderManager.renderCanvasHeight
+    );
+  }
+
+  /**
+   * 브라우저의 크기에 따라 canvas의 크기를 조절한다.
+   * 조절한 크기를 renderCanvas의 style에 적용한다.
+   */
+  static updateRenderCanvasSizeByWindowSize() {
+    const canvasRatio =
+      RenderManager.renderCanvasWidth / RenderManager.renderCanvasHeight;
+
+    let renderCanvasStyleWidth = RenderManager.renderCanvasWidth;
+    let renderCanvasStyleHeight = RenderManager.renderCanvasHeight;
+    // 화면의 세로 길이가 canvas의 세로 길이보다 작다면
+    // canvas의 가로 길이를 화면의 가로 길이로 설정한다.
+    if (window.innerHeight &lt; RenderManager.renderCanvasHeight) {
+      renderCanvasStyleHeight = window.innerHeight;
+    }
+    // 화면의 가로 길이가 canvas의 가로 길이보다 작다면
+    // canvas의 가로 길이를 화면의 가로 길이로 설정한다.
+    if (window.innerWidth &lt; RenderManager.renderCanvasWidth) {
+      renderCanvasStyleWidth = window.innerWidth;
+    }
+
+    const newRatio = renderCanvasStyleWidth / renderCanvasStyleHeight;
+    // w : h = newW : newH
+    // newW가 더 길다면 newW = w * newH/h = newH * w/h
+    // newH가 더 길다면 newH = h * newW/w = newW * h/w
+    if (newRatio > canvasRatio) {
+      renderCanvasStyleWidth = renderCanvasStyleHeight * canvasRatio;
+    } else if (newRatio &lt; canvasRatio) {
+      renderCanvasStyleHeight = renderCanvasStyleWidth / canvasRatio;
+    }
+
+    // 완성된 크기를 canvas의 style에 업데이트한다.
+    RenderManager.changeRenderCanvasStyleVariable(
+      renderCanvasStyleWidth,
+      renderCanvasStyleHeight
+    );
+  }
+
+  /**
+   * renderCanvas의 style에 사용되는 변수를 업데이트하여
+   * 화면에 나타나는 renderCanvans의 크기를 변경한다.
+   *
+   * @param {number} width - 가로 크기
+   * @param {number} height - 세로 크기
+   */
+  static changeRenderCanvasStyleVariable(width, height) {
+    const root = document.querySelector(":root");
+    root.style.setProperty("--render-canvas-width", width);
+    root.style.setProperty("--render-canvas-height", height);
+  }
+
+  /**
+   * bufferCanvas의 크기(width, height)를 변경한다.
+   *
+   * @param {number} width - 가로 크기
+   * @param {number} height - 세로 크기
+   */
+  static changeBufferCanvasResolution(width, height) {
+    const bufferCanvas = RenderManager.getBufferCanvas();
+    bufferCanvas.width = width;
+    bufferCanvas.height = height;
+  }
+
+  /**
+   * renderCanvas를 getElementById로 찾아 반환한다.
+   * 만약 존재하지 않는 element라면 새로 element를 생성해 반환한다.
+   *
+   * @returns {RenderCanvasContext2d}
+   */
+  static getRenderCanvas() {
+    if (RenderManager.renderCanvas === undefined) {
+      RenderManager.renderCanvas = document.getElementById(
+        RenderManager.renderCanvasId
+      );
+    }
+
+    if (RenderManager.renderCanvas === undefined) {
+      RenderManager.renderCanvas = document.createElement("canvas");
+      RenderManager.renderCanvas.id = RenderManager.renderCanvasId;
+    }
+
+    return RenderManager.renderCanvas;
+  }
+
+  /**
+   * bufferCanvas를 getElementById로 찾아 반환한다.
+   * 만약 존재하지 않는 element라면 새로 element를 생성해 반환한다.
+   *
+   * @returns {RenderCanvasContext2d}
+   */
+  static getBufferCanvas() {
+    if (RenderManager.bufferCanvas === undefined) {
+      RenderManager.bufferCanvas = document.getElementById(
+        RenderManager.bufferCanvasId
+      );
+    }
+
+    if (
+      RenderManager.bufferCanvas === undefined ||
+      RenderManager.bufferCanvas === null
+    ) {
+      const bufferCanvas = document.createElement("canvas");
+      bufferCanvas.id = RenderManager.bufferCanvasId;
+      RenderManager.bufferCanvas = bufferCanvas;
+    }
+    return RenderManager.bufferCanvas;
+  }
+}
+
+export default RenderManager;
+</code></pre>
+</article>
+<script src="static/highlight/langs/line-numbers.min.js"></script>
+<script>hljs.initLineNumbersOnLoad();</script>
+<script>
+    function identifyAndScrollToLines() {
+        document.querySelectorAll(".hljs-ln-numbers").forEach(function (el) {
+            if (window.location.hash === ("#L" + el.dataset.lineNumber)) {
+                el.parentElement.classList.add("selected");
+                el.parentElement.scrollIntoView({behavior: "smooth", inline: "start"});
+            }
+        });
+    }
+    
+    window.addEventListener("load", identifyAndScrollToLines);
+    window.setTimeout(identifyAndScrollToLines, 10);
+</script>
+<aside class="content-aside">
+    
+    
+        <div class="toc-tiny">
+            <h2 class="page-title">Source: <span class="ancestors"></span>./src/engine/core/render-manager.js</h2>
+        </div>
+    
+</aside>
+        <footer>
+            Generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a>
+            using <a href="https://github.com/sleelin/classy-template">classy-template</a>
+            
+                <span class="creation-timestamp">2023-05-27T15:17:44.525Z</span>
+            
+        </footer>
+    </main>
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>

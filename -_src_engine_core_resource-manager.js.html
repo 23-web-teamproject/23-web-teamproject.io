@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home: Source - ./src/engine/core/resource-manager.js</title>
+    <script src="static/classy.js"></script>
+    <script src="static/highlight/highlight.min.js"></script>
+    <script src="static/highlight/langs/javascript.min.js"></script>
+    <script src="static/highlight/langs/json.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="static/highlight/highlight.min.css">
+    <link type="text/css" rel="stylesheet" href="static/classy.css">
+</head>
+
+<body>
+    <header class="page-header">
+        <h1 class="package-details">
+            <a class="package-name" href="./">
+                
+                <span>Home</span>
+            </a>
+            
+        </h1>
+        <h2 class="page-title">Source: <span class="ancestors"></span>./src/engine/core/resource-manager.js</h2>
+        <div class="page-links">
+            
+            <div class="page-nav-toggle tiny-page-nav-toggle">
+                <input type="checkbox" name="tiny-page-nav-toggle" id="tiny-page-nav-toggle" autocomplete="off"/>
+                <label for="tiny-page-nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+        </div>
+    </header>
+    <nav class="page-nav">
+        <label class="hidden" for="tiny-page-nav"></label>
+        <input class="hidden tiny-page-nav-target" type="checkbox" id="tiny-page-nav" autocomplete="off"/>
+        <div class="nav-content">
+            <h3>Classes</h3><ul><li><a href="BoxCollisionResolver.html">BoxCollisionResolver</a></li><li><a href="CircleCollisionResolver.html">CircleCollisionResolver</a></li><li><a href="Circle.html">Circle</a></li><li><a href="CollisionResolver.html">CollisionResolver</a></li><li><a href="DestroyManager.html">DestroyManager</a></li><li><a href="GameObject.html">GameObject</a></li><li><a href="HTMLManager.html">HTMLManager</a></li><li><a href="InputManager.html">InputManager</a></li><li><a href="LayerManager.html">LayerManager</a></li><li><a href="PhysicsManager.html">PhysicsManager</a></li><li><a href="Rect.html">Rect</a></li><li><a href="RenderManager.html">RenderManager</a></li><li><a href="ResourceLoaderFactory.html">ResourceLoaderFactory</a></li><li><a href="ResourceLoader.html">ResourceLoader</a></li><li><a href="AudioResourceLoader.html">AudioResourceLoader</a></li><li><a href="ImageResourceLoader.html">ImageResourceLoader</a></li><li><a href="ResourceManager.html">ResourceManager</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="Sprite.html">Sprite</a></li><li><a href="Text.html">Text</a></li><li><a href="Collider.html">Collider</a></li><li><a href="BoxCollider.html">BoxCollider</a></li><li><a href="CircleCollider.html">CircleCollider</a></li><li><a href="Color.html">Color</a></li><li><a href="Layer.html">Layer</a></li><li><a href="DefaultLayer.html">DefaultLayer</a></li><li><a href="TerrainLayer.html">TerrainLayer</a></li><li><a href="UnitLayer.html">UnitLayer</a></li><li><a href="Manifold.html">Manifold</a></li><li><a href="Matrix.html">Matrix</a></li><li><a href="RigidBody.html">RigidBody</a></li><li><a href="Transform.html">Transform</a></li><li><a href="Vector.html">Vector</a></li><li><a href="Engine.html">Engine</a></li><li><a href="Particle.html">Particle</a></li><li><a href="ParticleEffect.html">ParticleEffect</a></li><li><a href="SoundEffect.html">SoundEffect</a></li><li><a href="Path.html">Path</a></li><li><a href="Timer.html">Timer</a></li></ul><h3>Globals</h3><ul><li><a href="global.html#KEY_STATUS">KEY_STATUS</a></li><li><a href="global.html#makeForm">makeForm</a></li><li><a href="global.html#getAvailableFpsAndResolution">getAvailableFpsAndResolution</a></li><li><a href="global.html#getAvailableResolution">getAvailableResolution</a></li><li><a href="global.html#getAvailableFpsList">getAvailableFpsList</a></li><li><a href="global.html#getCurrentFps">getCurrentFps</a></li><li><a href="global.html#typeCheck">typeCheck</a></li><li><a href="global.html#typeCheckAndClamp">typeCheckAndClamp</a></li><li><a href="global.html#findKeyInObjectWithValue">findKeyInObjectWithValue</a></li><li><a href="global.html#writeErrorMessageOnDocument">writeErrorMessageOnDocument</a></li></ul>
+        </div>
+    </nav>
+    <main id="main">
+        <article class="content-container source-code">
+    <header class="section-header">
+        <h2 class="page-title subsection-title">Source: <span class="ancestors"></span>./src/engine/core/resource-manager.js</h2>
+    </header>
+    <pre class="prettyprint source linenums"><code>import ResourceLoaderFactory from "/src/engine/core/resource-loader-factory.js";
+
+/**
+ * 리소스를 비동기로 로드하는 역할을 맡는다.
+ * 모든 리소스가 불러와졌다면 등록된 콜백 함수를 호출한다.
+ */
+class ResourceManager {
+  /**
+   * 불러온 리소스의 개수
+   *
+   * @property {number}
+   * @static
+   */
+  static loadedResourceCount = 0;
+  /**
+   * 불러와야할 리소스의 총 개수
+   *
+   * @property {number}
+   * @static
+   */
+  static totalResourceCount = 0;
+  /**
+   * 모든 리소스가 불러와졌을 때 실행할 콜백함수
+   *
+   * @property {function}
+   * @static
+   */
+  static allResourceLoadedCallback = () => {};
+
+  constructor() {}
+
+  /**
+   * path를 경로로 하는 리소스를 생성한다.
+   * 이 때 리소스는 constructor에 의해 생성된다.
+   *
+   * @param {string} path - 리소스의 경로
+   * @param {Audio.constructor|Image.constructor} constructor - 리소스를 생성할 생성자
+   * @param {function} [callback=() => {}] - 리소스가 생성된 이후에 실행할 콜백함수
+   * @returns {HTMLAudioElement|HTMLImageElement}
+   */
+  static loadResource(path, constructor, callback = () => {}) {
+    const resourceLoader = ResourceLoaderFactory.create(
+      path,
+      constructor,
+      callback
+    );
+
+    return resourceLoader.load();
+  }
+
+  /**
+   * 로드한 리소스의 개수를 count만큼 증가시킨다.
+   *
+   * @param {number} count - 로드한 리소스의 개수
+   */
+  static onResourceLoad(count) {
+    ResourceManager.loadedResourceCount += count;
+
+    if (ResourceManager.isAllResourceLoaded()) {
+      ResourceManager.allResourceLoadedCallback();
+      ResourceManager.removeResourceLoadedCallback();
+    }
+  }
+
+  /**
+   * 모든 리소스가 로드되었는지를 확인한다.
+   *
+   * @returns {boolean}
+   */
+  static isAllResourceLoaded() {
+    return (
+      ResourceManager.loadedResourceCount === ResourceManager.totalResourceCount
+    );
+  }
+
+  /**
+   * 모든 리소스가 로드되었을 때 실행될 콜백함수를 초기화한다.
+   */
+  static removeResourceLoadedCallback() {
+    ResourceManager.allResourceLoadedCallback = () => {};
+  }
+
+  /**
+   * 로드할 리소스의 총 개수를 증가시킨다.
+   *
+   * @param {number} count - 로드할 리소스의 개수
+   */
+  static addResourceCount(count) {
+    ResourceManager.totalResourceCount += count;
+  }
+
+  /**
+   * 모든 리소스가 로드되었을 때 실행할 콜백함수를 설정한다.
+   *
+   * @param {function} callback
+   */
+  static setAllResourceLoadedCallback(callback) {
+    ResourceManager.allResourceLoadedCallback = callback;
+  }
+
+  /**
+   * 로드해야할 리소스의 총 개수를 반환한다.
+   *
+   * @returns {number}
+   */
+  static getTotalResourceCount() {
+    return ResourceManager.totalResourceCount;
+  }
+
+  /**
+   * 로드한 리소스의 개수를 반환한다.
+   *
+   * @returns {number}
+   */
+  static getLoadedResourceCount() {
+    return ResourceManager.loadedResourceCount;
+  }
+}
+
+export default ResourceManager;
+</code></pre>
+</article>
+<script src="static/highlight/langs/line-numbers.min.js"></script>
+<script>hljs.initLineNumbersOnLoad();</script>
+<script>
+    function identifyAndScrollToLines() {
+        document.querySelectorAll(".hljs-ln-numbers").forEach(function (el) {
+            if (window.location.hash === ("#L" + el.dataset.lineNumber)) {
+                el.parentElement.classList.add("selected");
+                el.parentElement.scrollIntoView({behavior: "smooth", inline: "start"});
+            }
+        });
+    }
+    
+    window.addEventListener("load", identifyAndScrollToLines);
+    window.setTimeout(identifyAndScrollToLines, 10);
+</script>
+<aside class="content-aside">
+    
+    
+        <div class="toc-tiny">
+            <h2 class="page-title">Source: <span class="ancestors"></span>./src/engine/core/resource-manager.js</h2>
+        </div>
+    
+</aside>
+        <footer>
+            Generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a>
+            using <a href="https://github.com/sleelin/classy-template">classy-template</a>
+            
+                <span class="creation-timestamp">2023-05-27T15:17:44.530Z</span>
+            
+        </footer>
+    </main>
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>

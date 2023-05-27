@@ -1,725 +1,442 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
     <meta charset="utf-8">
-    <title>BoxCollisionResolver - Documentation</title>
-    
-    
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
-    <script src="scripts/nav.js" defer></script>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home: Class - BoxCollisionResolver</title>
+    <script src="static/classy.js"></script>
+    <script src="static/highlight/highlight.min.js"></script>
+    <script src="static/highlight/langs/javascript.min.js"></script>
+    <script src="static/highlight/langs/json.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="static/highlight/highlight.min.css">
+    <link type="text/css" rel="stylesheet" href="static/classy.css">
 </head>
+
 <body>
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav >
-    
-    
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AudioResourceLoader.html">AudioResourceLoader</a><ul class='methods'><li data-type='method'><a href="AudioResourceLoader.html#load">load</a></li></ul></li><li><a href="BoxCollider.html">BoxCollider</a><ul class='methods'><li data-type='method'><a href="BoxCollider.html#getBoundary">getBoundary</a></li><li data-type='method'><a href="BoxCollider.html#getOffset">getOffset</a></li><li data-type='method'><a href="BoxCollider.html#setBoundary">setBoundary</a></li><li data-type='method'><a href="BoxCollider.html#setOffset">setOffset</a></li></ul></li><li><a href="BoxCollisionResolver.html">BoxCollisionResolver</a><ul class='methods'><li data-type='method'><a href="BoxCollisionResolver.html#isCollideWith">isCollideWith</a></li><li data-type='method'><a href="BoxCollisionResolver.html#isCollideWithBox">isCollideWithBox</a></li><li data-type='method'><a href="BoxCollisionResolver.html#isCollideWithCircle">isCollideWithCircle</a></li><li data-type='method'><a href="BoxCollisionResolver.html#resolveBoxCollision">resolveBoxCollision</a></li><li data-type='method'><a href="BoxCollisionResolver.html#resolveCircleCollision">resolveCircleCollision</a></li><li data-type='method'><a href="BoxCollisionResolver.html#resolveCollision">resolveCollision</a></li></ul></li><li><a href="Circle.html">Circle</a><ul class='methods'><li data-type='method'><a href="Circle.html#activate">activate</a></li><li data-type='method'><a href="Circle.html#addAcceleration">addAcceleration</a></li><li data-type='method'><a href="Circle.html#addChild">addChild</a></li><li data-type='method'><a href="Circle.html#addPosition">addPosition</a></li><li data-type='method'><a href="Circle.html#addRotation">addRotation</a></li><li data-type='method'><a href="Circle.html#addScale">addScale</a></li><li data-type='method'><a href="Circle.html#addVelocity">addVelocity</a></li><li data-type='method'><a href="Circle.html#afterDraw">afterDraw</a></li><li data-type='method'><a href="Circle.html#beforeDraw">beforeDraw</a></li><li data-type='method'><a href="Circle.html#calculateMatrix">calculateMatrix</a></li><li data-type='method'><a href="Circle.html#deactivate">deactivate</a></li><li data-type='method'><a href="Circle.html#destroy">destroy</a></li><li data-type='method'><a href="Circle.html#draw">draw</a></li><li data-type='method'><a href="Circle.html#getAcceleration">getAcceleration</a></li><li data-type='method'><a href="Circle.html#getBounceness">getBounceness</a></li><li data-type='method'><a href="Circle.html#getBoundary">getBoundary</a></li><li data-type='method'><a href="Circle.html#getColliderOffset">getColliderOffset</a></li><li data-type='method'><a href="Circle.html#getColliderWorldPosition">getColliderWorldPosition</a></li><li data-type='method'><a href="Circle.html#getDynamicFriction">getDynamicFriction</a></li><li data-type='method'><a href="Circle.html#getInverseMass">getInverseMass</a></li><li data-type='method'><a href="Circle.html#getLayer">getLayer</a></li><li data-type='method'><a href="Circle.html#getMass">getMass</a></li><li data-type='method'><a href="Circle.html#getMatrix">getMatrix</a></li><li data-type='method'><a href="Circle.html#getName">getName</a></li><li data-type='method'><a href="Circle.html#getPosition">getPosition</a></li><li data-type='method'><a href="Circle.html#getRotation">getRotation</a></li><li data-type='method'><a href="Circle.html#getScale">getScale</a></li><li data-type='method'><a href="Circle.html#getSize">getSize</a></li><li data-type='method'><a href="Circle.html#getStaticFriction">getStaticFriction</a></li><li data-type='method'><a href="Circle.html#getVelocity">getVelocity</a></li><li data-type='method'><a href="Circle.html#getWorldBoundary">getWorldBoundary</a></li><li data-type='method'><a href="Circle.html#getWorldPosition">getWorldPosition</a></li><li data-type='method'><a href="Circle.html#getWorldRotation">getWorldRotation</a></li><li data-type='method'><a href="Circle.html#getWorldScale">getWorldScale</a></li><li data-type='method'><a href="Circle.html#getWorldSize">getWorldSize</a></li><li data-type='method'><a href="Circle.html#hasParentGameObject">hasParentGameObject</a></li><li data-type='method'><a href="Circle.html#hide">hide</a></li><li data-type='method'><a href="Circle.html#integrateForce">integrateForce</a></li><li data-type='method'><a href="Circle.html#integrateVelocity">integrateVelocity</a></li><li data-type='method'><a href="Circle.html#isLeftMouseClickThis">isLeftMouseClickThis</a></li><li data-type='method'><a href="Circle.html#isMouseOver">isMouseOver</a></li><li data-type='method'><a href="Circle.html#isRightMouseClickThis">isRightMouseClickThis</a></li><li data-type='method'><a href="Circle.html#multiplyParentMatrix">multiplyParentMatrix</a></li><li data-type='method'><a href="Circle.html#onCollision">onCollision</a></li><li data-type='method'><a href="Circle.html#removeChild">removeChild</a></li><li data-type='method'><a href="Circle.html#removeParent">removeParent</a></li><li data-type='method'><a href="Circle.html#render">render</a></li><li data-type='method'><a href="Circle.html#setAcceleration">setAcceleration</a></li><li data-type='method'><a href="Circle.html#setName">setName</a></li><li data-type='method'><a href="Circle.html#setParent">setParent</a></li><li data-type='method'><a href="Circle.html#setPosition">setPosition</a></li><li data-type='method'><a href="Circle.html#setRotation">setRotation</a></li><li data-type='method'><a href="Circle.html#setScale">setScale</a></li><li data-type='method'><a href="Circle.html#setStrokeWidth">setStrokeWidth</a></li><li data-type='method'><a href="Circle.html#setTransform">setTransform</a></li><li data-type='method'><a href="Circle.html#setVelocity">setVelocity</a></li><li data-type='method'><a href="Circle.html#show">show</a></li><li data-type='method'><a href="Circle.html#update">update</a></li></ul></li><li><a href="CircleCollider.html">CircleCollider</a><ul class='methods'><li data-type='method'><a href="CircleCollider.html#getBoundary">getBoundary</a></li><li data-type='method'><a href="CircleCollider.html#getOffset">getOffset</a></li><li data-type='method'><a href="CircleCollider.html#setBoundary">setBoundary</a></li><li data-type='method'><a href="CircleCollider.html#setOffset">setOffset</a></li></ul></li><li><a href="CircleCollisionResolver.html">CircleCollisionResolver</a><ul class='methods'><li data-type='method'><a href="CircleCollisionResolver.html#isCollideWith">isCollideWith</a></li><li data-type='method'><a href="CircleCollisionResolver.html#isCollideWithBox">isCollideWithBox</a></li><li data-type='method'><a href="CircleCollisionResolver.html#isCollideWithCircle">isCollideWithCircle</a></li><li data-type='method'><a href="CircleCollisionResolver.html#resolveBoxCollision">resolveBoxCollision</a></li><li data-type='method'><a href="CircleCollisionResolver.html#resolveCircleCollision">resolveCircleCollision</a></li><li data-type='method'><a href="CircleCollisionResolver.html#resolveCollision">resolveCollision</a></li></ul></li><li><a href="Collider.html">Collider</a><ul class='methods'><li data-type='method'><a href="Collider.html#getOffset">getOffset</a></li><li data-type='method'><a href="Collider.html#setOffset">setOffset</a></li></ul></li><li><a href="CollisionResolver.html">CollisionResolver</a><ul class='methods'><li data-type='method'><a href="CollisionResolver.html#isCollideWith">isCollideWith</a></li><li data-type='method'><a href="CollisionResolver.html#isCollideWithBox">isCollideWithBox</a></li><li data-type='method'><a href="CollisionResolver.html#resolveCollision">resolveCollision</a></li></ul></li><li><a href="Color.html">Color</a><ul class='methods'><li data-type='method'><a href="Color.html#toArray">toArray</a></li></ul></li><li><a href="DefaultLayer.html">DefaultLayer</a><ul class='methods'><li data-type='method'><a href="DefaultLayer.html#canPhysicsInteractLayerWith">canPhysicsInteractLayerWith</a></li></ul></li><li><a href="DestroyManager.html">DestroyManager</a><ul class='methods'><li data-type='method'><a href="DestroyManager.html#.destroyAll">destroyAll</a></li><li data-type='method'><a href="DestroyManager.html#.push">push</a></li></ul></li><li><a href="Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="Engine.html#run">run</a></li><li data-type='method'><a href="Engine.html#.init">init</a></li><li data-type='method'><a href="Engine.html#.initWithForm">initWithForm</a></li></ul></li><li><a href="GameObject.html">GameObject</a><ul class='methods'><li data-type='method'><a href="GameObject.html#activate">activate</a></li><li data-type='method'><a href="GameObject.html#addAcceleration">addAcceleration</a></li><li data-type='method'><a href="GameObject.html#addChild">addChild</a></li><li data-type='method'><a href="GameObject.html#addPosition">addPosition</a></li><li data-type='method'><a href="GameObject.html#addRotation">addRotation</a></li><li data-type='method'><a href="GameObject.html#addScale">addScale</a></li><li data-type='method'><a href="GameObject.html#addVelocity">addVelocity</a></li><li data-type='method'><a href="GameObject.html#afterDraw">afterDraw</a></li><li data-type='method'><a href="GameObject.html#beforeDraw">beforeDraw</a></li><li data-type='method'><a href="GameObject.html#calculateMatrix">calculateMatrix</a></li><li data-type='method'><a href="GameObject.html#deactivate">deactivate</a></li><li data-type='method'><a href="GameObject.html#destroy">destroy</a></li><li data-type='method'><a href="GameObject.html#draw">draw</a></li><li data-type='method'><a href="GameObject.html#getAcceleration">getAcceleration</a></li><li data-type='method'><a href="GameObject.html#getBounceness">getBounceness</a></li><li data-type='method'><a href="GameObject.html#getBoundary">getBoundary</a></li><li data-type='method'><a href="GameObject.html#getColliderOffset">getColliderOffset</a></li><li data-type='method'><a href="GameObject.html#getColliderWorldPosition">getColliderWorldPosition</a></li><li data-type='method'><a href="GameObject.html#getDynamicFriction">getDynamicFriction</a></li><li data-type='method'><a href="GameObject.html#getInverseMass">getInverseMass</a></li><li data-type='method'><a href="GameObject.html#getLayer">getLayer</a></li><li data-type='method'><a href="GameObject.html#getMass">getMass</a></li><li data-type='method'><a href="GameObject.html#getMatrix">getMatrix</a></li><li data-type='method'><a href="GameObject.html#getName">getName</a></li><li data-type='method'><a href="GameObject.html#getPosition">getPosition</a></li><li data-type='method'><a href="GameObject.html#getRotation">getRotation</a></li><li data-type='method'><a href="GameObject.html#getScale">getScale</a></li><li data-type='method'><a href="GameObject.html#getSize">getSize</a></li><li data-type='method'><a href="GameObject.html#getStaticFriction">getStaticFriction</a></li><li data-type='method'><a href="GameObject.html#getVelocity">getVelocity</a></li><li data-type='method'><a href="GameObject.html#getWorldBoundary">getWorldBoundary</a></li><li data-type='method'><a href="GameObject.html#getWorldPosition">getWorldPosition</a></li><li data-type='method'><a href="GameObject.html#getWorldRotation">getWorldRotation</a></li><li data-type='method'><a href="GameObject.html#getWorldScale">getWorldScale</a></li><li data-type='method'><a href="GameObject.html#getWorldSize">getWorldSize</a></li><li data-type='method'><a href="GameObject.html#hasParentGameObject">hasParentGameObject</a></li><li data-type='method'><a href="GameObject.html#hide">hide</a></li><li data-type='method'><a href="GameObject.html#integrateForce">integrateForce</a></li><li data-type='method'><a href="GameObject.html#integrateVelocity">integrateVelocity</a></li><li data-type='method'><a href="GameObject.html#isLeftMouseClickThis">isLeftMouseClickThis</a></li><li data-type='method'><a href="GameObject.html#isMouseOver">isMouseOver</a></li><li data-type='method'><a href="GameObject.html#isRightMouseClickThis">isRightMouseClickThis</a></li><li data-type='method'><a href="GameObject.html#multiplyParentMatrix">multiplyParentMatrix</a></li><li data-type='method'><a href="GameObject.html#onCollision">onCollision</a></li><li data-type='method'><a href="GameObject.html#removeChild">removeChild</a></li><li data-type='method'><a href="GameObject.html#removeParent">removeParent</a></li><li data-type='method'><a href="GameObject.html#render">render</a></li><li data-type='method'><a href="GameObject.html#setAcceleration">setAcceleration</a></li><li data-type='method'><a href="GameObject.html#setName">setName</a></li><li data-type='method'><a href="GameObject.html#setParent">setParent</a></li><li data-type='method'><a href="GameObject.html#setPosition">setPosition</a></li><li data-type='method'><a href="GameObject.html#setRotation">setRotation</a></li><li data-type='method'><a href="GameObject.html#setScale">setScale</a></li><li data-type='method'><a href="GameObject.html#setTransform">setTransform</a></li><li data-type='method'><a href="GameObject.html#setVelocity">setVelocity</a></li><li data-type='method'><a href="GameObject.html#show">show</a></li><li data-type='method'><a href="GameObject.html#update">update</a></li></ul></li><li><a href="HTMLManager.html">HTMLManager</a><ul class='methods'><li data-type='method'><a href="HTMLManager.html#.setFavicon">setFavicon</a></li><li data-type='method'><a href="HTMLManager.html#.setTitle">setTitle</a></li></ul></li><li><a href="ImageResourceLoader.html">ImageResourceLoader</a><ul class='methods'><li data-type='method'><a href="ImageResourceLoader.html#load">load</a></li></ul></li><li><a href="InputManager.html">InputManager</a><ul class='methods'><li data-type='method'><a href="InputManager.html#registerEventListener">registerEventListener</a></li><li data-type='method'><a href="InputManager.html#update">update</a></li><li data-type='method'><a href="InputManager.html#.getMousePos">getMousePos</a></li><li data-type='method'><a href="InputManager.html#.isKeyDown">isKeyDown</a></li><li data-type='method'><a href="InputManager.html#.isKeyInKeyTable">isKeyInKeyTable</a></li><li data-type='method'><a href="InputManager.html#.isKeyPressed">isKeyPressed</a></li><li data-type='method'><a href="InputManager.html#.isKeyReleased">isKeyReleased</a></li><li data-type='method'><a href="InputManager.html#.isKeyUp">isKeyUp</a></li></ul></li><li><a href="Layer.html">Layer</a><ul class='methods'><li data-type='method'><a href="Layer.html#canPhysicsInteractLayerWith">canPhysicsInteractLayerWith</a></li></ul></li><li><a href="LayerManager.html">LayerManager</a><ul class='methods'><li data-type='method'><a href="LayerManager.html#.initializePhysicsInteractionState">initializePhysicsInteractionState</a></li><li data-type='method'><a href="LayerManager.html#.setPhysicsInteration">setPhysicsInteration</a></li></ul></li><li><a href="Manifold.html">Manifold</a></li><li><a href="Matrix.html">Matrix</a><ul class='methods'><li data-type='method'><a href="Matrix.html#multiply">multiply</a></li></ul></li><li><a href="Particle.html">Particle</a><ul class='methods'><li data-type='method'><a href="Particle.html#activate">activate</a></li><li data-type='method'><a href="Particle.html#addAcceleration">addAcceleration</a></li><li data-type='method'><a href="Particle.html#addChild">addChild</a></li><li data-type='method'><a href="Particle.html#addPosition">addPosition</a></li><li data-type='method'><a href="Particle.html#addRotation">addRotation</a></li><li data-type='method'><a href="Particle.html#addScale">addScale</a></li><li data-type='method'><a href="Particle.html#addVelocity">addVelocity</a></li><li data-type='method'><a href="Particle.html#afterDraw">afterDraw</a></li><li data-type='method'><a href="Particle.html#beforeDraw">beforeDraw</a></li><li data-type='method'><a href="Particle.html#calculateMatrix">calculateMatrix</a></li><li data-type='method'><a href="Particle.html#deactivate">deactivate</a></li><li data-type='method'><a href="Particle.html#destroy">destroy</a></li><li data-type='method'><a href="Particle.html#disableColorOverlay">disableColorOverlay</a></li><li data-type='method'><a href="Particle.html#draw">draw</a></li><li data-type='method'><a href="Particle.html#enableColorOverlay">enableColorOverlay</a></li><li data-type='method'><a href="Particle.html#fadeAway">fadeAway</a></li><li data-type='method'><a href="Particle.html#getAcceleration">getAcceleration</a></li><li data-type='method'><a href="Particle.html#getBounceness">getBounceness</a></li><li data-type='method'><a href="Particle.html#getBoundary">getBoundary</a></li><li data-type='method'><a href="Particle.html#getColliderOffset">getColliderOffset</a></li><li data-type='method'><a href="Particle.html#getColliderWorldPosition">getColliderWorldPosition</a></li><li data-type='method'><a href="Particle.html#getDynamicFriction">getDynamicFriction</a></li><li data-type='method'><a href="Particle.html#getInverseMass">getInverseMass</a></li><li data-type='method'><a href="Particle.html#getLayer">getLayer</a></li><li data-type='method'><a href="Particle.html#getMass">getMass</a></li><li data-type='method'><a href="Particle.html#getMatrix">getMatrix</a></li><li data-type='method'><a href="Particle.html#getName">getName</a></li><li data-type='method'><a href="Particle.html#getPosition">getPosition</a></li><li data-type='method'><a href="Particle.html#getRotation">getRotation</a></li><li data-type='method'><a href="Particle.html#getScale">getScale</a></li><li data-type='method'><a href="Particle.html#getSize">getSize</a></li><li data-type='method'><a href="Particle.html#getStaticFriction">getStaticFriction</a></li><li data-type='method'><a href="Particle.html#getVelocity">getVelocity</a></li><li data-type='method'><a href="Particle.html#getWorldBoundary">getWorldBoundary</a></li><li data-type='method'><a href="Particle.html#getWorldPosition">getWorldPosition</a></li><li data-type='method'><a href="Particle.html#getWorldRotation">getWorldRotation</a></li><li data-type='method'><a href="Particle.html#getWorldScale">getWorldScale</a></li><li data-type='method'><a href="Particle.html#getWorldSize">getWorldSize</a></li><li data-type='method'><a href="Particle.html#hasParentGameObject">hasParentGameObject</a></li><li data-type='method'><a href="Particle.html#hide">hide</a></li><li data-type='method'><a href="Particle.html#integrateForce">integrateForce</a></li><li data-type='method'><a href="Particle.html#integrateVelocity">integrateVelocity</a></li><li data-type='method'><a href="Particle.html#isLeftMouseClickThis">isLeftMouseClickThis</a></li><li data-type='method'><a href="Particle.html#isMouseOver">isMouseOver</a></li><li data-type='method'><a href="Particle.html#isRightMouseClickThis">isRightMouseClickThis</a></li><li data-type='method'><a href="Particle.html#multiplyParentMatrix">multiplyParentMatrix</a></li><li data-type='method'><a href="Particle.html#onCollision">onCollision</a></li><li data-type='method'><a href="Particle.html#removeChild">removeChild</a></li><li data-type='method'><a href="Particle.html#removeParent">removeParent</a></li><li data-type='method'><a href="Particle.html#render">render</a></li><li data-type='method'><a href="Particle.html#setAcceleration">setAcceleration</a></li><li data-type='method'><a href="Particle.html#setName">setName</a></li><li data-type='method'><a href="Particle.html#setOverlayColor">setOverlayColor</a></li><li data-type='method'><a href="Particle.html#setParent">setParent</a></li><li data-type='method'><a href="Particle.html#setPosition">setPosition</a></li><li data-type='method'><a href="Particle.html#setRotation">setRotation</a></li><li data-type='method'><a href="Particle.html#setScale">setScale</a></li><li data-type='method'><a href="Particle.html#setTransform">setTransform</a></li><li data-type='method'><a href="Particle.html#setVelocity">setVelocity</a></li><li data-type='method'><a href="Particle.html#show">show</a></li><li data-type='method'><a href="Particle.html#spreadOut">spreadOut</a></li><li data-type='method'><a href="Particle.html#update">update</a></li><li data-type='method'><a href="Particle.html#updateSize">updateSize</a></li></ul></li><li><a href="ParticleEffect.html">ParticleEffect</a><ul class='methods'><li data-type='method'><a href="ParticleEffect.html#activate">activate</a></li><li data-type='method'><a href="ParticleEffect.html#addAcceleration">addAcceleration</a></li><li data-type='method'><a href="ParticleEffect.html#addChild">addChild</a></li><li data-type='method'><a href="ParticleEffect.html#addPosition">addPosition</a></li><li data-type='method'><a href="ParticleEffect.html#addRotation">addRotation</a></li><li data-type='method'><a href="ParticleEffect.html#addScale">addScale</a></li><li data-type='method'><a href="ParticleEffect.html#addVelocity">addVelocity</a></li><li data-type='method'><a href="ParticleEffect.html#afterDraw">afterDraw</a></li><li data-type='method'><a href="ParticleEffect.html#beforeDraw">beforeDraw</a></li><li data-type='method'><a href="ParticleEffect.html#calculateMatrix">calculateMatrix</a></li><li data-type='method'><a href="ParticleEffect.html#deactivate">deactivate</a></li><li data-type='method'><a href="ParticleEffect.html#destroy">destroy</a></li><li data-type='method'><a href="ParticleEffect.html#draw">draw</a></li><li data-type='method'><a href="ParticleEffect.html#getAcceleration">getAcceleration</a></li><li data-type='method'><a href="ParticleEffect.html#getBounceness">getBounceness</a></li><li data-type='method'><a href="ParticleEffect.html#getBoundary">getBoundary</a></li><li data-type='method'><a href="ParticleEffect.html#getColliderOffset">getColliderOffset</a></li><li data-type='method'><a href="ParticleEffect.html#getColliderWorldPosition">getColliderWorldPosition</a></li><li data-type='method'><a href="ParticleEffect.html#getDynamicFriction">getDynamicFriction</a></li><li data-type='method'><a href="ParticleEffect.html#getInverseMass">getInverseMass</a></li><li data-type='method'><a href="ParticleEffect.html#getLayer">getLayer</a></li><li data-type='method'><a href="ParticleEffect.html#getMass">getMass</a></li><li data-type='method'><a href="ParticleEffect.html#getMatrix">getMatrix</a></li><li data-type='method'><a href="ParticleEffect.html#getName">getName</a></li><li data-type='method'><a href="ParticleEffect.html#getPosition">getPosition</a></li><li data-type='method'><a href="ParticleEffect.html#getRotation">getRotation</a></li><li data-type='method'><a href="ParticleEffect.html#getScale">getScale</a></li><li data-type='method'><a href="ParticleEffect.html#getSize">getSize</a></li><li data-type='method'><a href="ParticleEffect.html#getStaticFriction">getStaticFriction</a></li><li data-type='method'><a href="ParticleEffect.html#getVelocity">getVelocity</a></li><li data-type='method'><a href="ParticleEffect.html#getWorldBoundary">getWorldBoundary</a></li><li data-type='method'><a href="ParticleEffect.html#getWorldPosition">getWorldPosition</a></li><li data-type='method'><a href="ParticleEffect.html#getWorldRotation">getWorldRotation</a></li><li data-type='method'><a href="ParticleEffect.html#getWorldScale">getWorldScale</a></li><li data-type='method'><a href="ParticleEffect.html#getWorldSize">getWorldSize</a></li><li data-type='method'><a href="ParticleEffect.html#hasParentGameObject">hasParentGameObject</a></li><li data-type='method'><a href="ParticleEffect.html#hide">hide</a></li><li data-type='method'><a href="ParticleEffect.html#integrateForce">integrateForce</a></li><li data-type='method'><a href="ParticleEffect.html#integrateVelocity">integrateVelocity</a></li><li data-type='method'><a href="ParticleEffect.html#isLeftMouseClickThis">isLeftMouseClickThis</a></li><li data-type='method'><a href="ParticleEffect.html#isMouseOver">isMouseOver</a></li><li data-type='method'><a href="ParticleEffect.html#isRightMouseClickThis">isRightMouseClickThis</a></li><li data-type='method'><a href="ParticleEffect.html#multiplyParentMatrix">multiplyParentMatrix</a></li><li data-type='method'><a href="ParticleEffect.html#onCollision">onCollision</a></li><li data-type='method'><a href="ParticleEffect.html#removeChild">removeChild</a></li><li data-type='method'><a href="ParticleEffect.html#removeParent">removeParent</a></li><li data-type='method'><a href="ParticleEffect.html#render">render</a></li><li data-type='method'><a href="ParticleEffect.html#run">run</a></li><li data-type='method'><a href="ParticleEffect.html#setAcceleration">setAcceleration</a></li><li data-type='method'><a href="ParticleEffect.html#setName">setName</a></li><li data-type='method'><a href="ParticleEffect.html#setParent">setParent</a></li><li data-type='method'><a href="ParticleEffect.html#setPosition">setPosition</a></li><li data-type='method'><a href="ParticleEffect.html#setRotation">setRotation</a></li><li data-type='method'><a href="ParticleEffect.html#setScale">setScale</a></li><li data-type='method'><a href="ParticleEffect.html#setTransform">setTransform</a></li><li data-type='method'><a href="ParticleEffect.html#setVelocity">setVelocity</a></li><li data-type='method'><a href="ParticleEffect.html#show">show</a></li><li data-type='method'><a href="ParticleEffect.html#stop">stop</a></li><li data-type='method'><a href="ParticleEffect.html#update">update</a></li></ul></li><li><a href="Path.html">Path</a><ul class='methods'><li data-type='method'><a href="Path.html#.convertToAbsoluteAssetPath">convertToAbsoluteAssetPath</a></li><li data-type='method'><a href="Path.html#.isAbsolutePath">isAbsolutePath</a></li><li data-type='method'><a href="Path.html#.setAssetFolderPath">setAssetFolderPath</a></li></ul></li><li><a href="PhysicsManager.html">PhysicsManager</a><ul class='methods'><li data-type='method'><a href="PhysicsManager.html#.applyFriction">applyFriction</a></li><li data-type='method'><a href="PhysicsManager.html#.applyImpulse">applyImpulse</a></li><li data-type='method'><a href="PhysicsManager.html#.collectPhysicsEnabledGameObjectToList">collectPhysicsEnabledGameObjectToList</a></li><li data-type='method'><a href="PhysicsManager.html#.positionalCorrection">positionalCorrection</a></li><li data-type='method'><a href="PhysicsManager.html#.update">update</a></li></ul></li><li><a href="Rect.html">Rect</a><ul class='methods'><li data-type='method'><a href="Rect.html#activate">activate</a></li><li data-type='method'><a href="Rect.html#addAcceleration">addAcceleration</a></li><li data-type='method'><a href="Rect.html#addChild">addChild</a></li><li data-type='method'><a href="Rect.html#addPosition">addPosition</a></li><li data-type='method'><a href="Rect.html#addRotation">addRotation</a></li><li data-type='method'><a href="Rect.html#addScale">addScale</a></li><li data-type='method'><a href="Rect.html#addVelocity">addVelocity</a></li><li data-type='method'><a href="Rect.html#afterDraw">afterDraw</a></li><li data-type='method'><a href="Rect.html#beforeDraw">beforeDraw</a></li><li data-type='method'><a href="Rect.html#calculateMatrix">calculateMatrix</a></li><li data-type='method'><a href="Rect.html#deactivate">deactivate</a></li><li data-type='method'><a href="Rect.html#destroy">destroy</a></li><li data-type='method'><a href="Rect.html#draw">draw</a></li><li data-type='method'><a href="Rect.html#getAcceleration">getAcceleration</a></li><li data-type='method'><a href="Rect.html#getBounceness">getBounceness</a></li><li data-type='method'><a href="Rect.html#getBoundary">getBoundary</a></li><li data-type='method'><a href="Rect.html#getColliderOffset">getColliderOffset</a></li><li data-type='method'><a href="Rect.html#getColliderWorldPosition">getColliderWorldPosition</a></li><li data-type='method'><a href="Rect.html#getDynamicFriction">getDynamicFriction</a></li><li data-type='method'><a href="Rect.html#getInverseMass">getInverseMass</a></li><li data-type='method'><a href="Rect.html#getLayer">getLayer</a></li><li data-type='method'><a href="Rect.html#getMass">getMass</a></li><li data-type='method'><a href="Rect.html#getMatrix">getMatrix</a></li><li data-type='method'><a href="Rect.html#getName">getName</a></li><li data-type='method'><a href="Rect.html#getPosition">getPosition</a></li><li data-type='method'><a href="Rect.html#getRotation">getRotation</a></li><li data-type='method'><a href="Rect.html#getScale">getScale</a></li><li data-type='method'><a href="Rect.html#getSize">getSize</a></li><li data-type='method'><a href="Rect.html#getStaticFriction">getStaticFriction</a></li><li data-type='method'><a href="Rect.html#getVelocity">getVelocity</a></li><li data-type='method'><a href="Rect.html#getWorldBoundary">getWorldBoundary</a></li><li data-type='method'><a href="Rect.html#getWorldPosition">getWorldPosition</a></li><li data-type='method'><a href="Rect.html#getWorldRotation">getWorldRotation</a></li><li data-type='method'><a href="Rect.html#getWorldScale">getWorldScale</a></li><li data-type='method'><a href="Rect.html#getWorldSize">getWorldSize</a></li><li data-type='method'><a href="Rect.html#hasParentGameObject">hasParentGameObject</a></li><li data-type='method'><a href="Rect.html#hide">hide</a></li><li data-type='method'><a href="Rect.html#integrateForce">integrateForce</a></li><li data-type='method'><a href="Rect.html#integrateVelocity">integrateVelocity</a></li><li data-type='method'><a href="Rect.html#isLeftMouseClickThis">isLeftMouseClickThis</a></li><li data-type='method'><a href="Rect.html#isMouseOver">isMouseOver</a></li><li data-type='method'><a href="Rect.html#isRightMouseClickThis">isRightMouseClickThis</a></li><li data-type='method'><a href="Rect.html#multiplyParentMatrix">multiplyParentMatrix</a></li><li data-type='method'><a href="Rect.html#onCollision">onCollision</a></li><li data-type='method'><a href="Rect.html#removeChild">removeChild</a></li><li data-type='method'><a href="Rect.html#removeParent">removeParent</a></li><li data-type='method'><a href="Rect.html#render">render</a></li><li data-type='method'><a href="Rect.html#setAcceleration">setAcceleration</a></li><li data-type='method'><a href="Rect.html#setName">setName</a></li><li data-type='method'><a href="Rect.html#setParent">setParent</a></li><li data-type='method'><a href="Rect.html#setPosition">setPosition</a></li><li data-type='method'><a href="Rect.html#setRotation">setRotation</a></li><li data-type='method'><a href="Rect.html#setScale">setScale</a></li><li data-type='method'><a href="Rect.html#setStrokeWidth">setStrokeWidth</a></li><li data-type='method'><a href="Rect.html#setTransform">setTransform</a></li><li data-type='method'><a href="Rect.html#setVelocity">setVelocity</a></li><li data-type='method'><a href="Rect.html#show">show</a></li><li data-type='method'><a href="Rect.html#update">update</a></li></ul></li><li><a href="RenderManager.html">RenderManager</a><ul class='methods'><li data-type='method'><a href="RenderManager.html#.changeBufferCanvasResolution">changeBufferCanvasResolution</a></li><li data-type='method'><a href="RenderManager.html#.changeRenderCanvasStyleVariable">changeRenderCanvasStyleVariable</a></li><li data-type='method'><a href="RenderManager.html#.changeResolution">changeResolution</a></li><li data-type='method'><a href="RenderManager.html#.clearScreen">clearScreen</a></li><li data-type='method'><a href="RenderManager.html#.getBufferCanvas">getBufferCanvas</a></li><li data-type='method'><a href="RenderManager.html#.getRenderCanvas">getRenderCanvas</a></li><li data-type='method'><a href="RenderManager.html#.render">render</a></li><li data-type='method'><a href="RenderManager.html#.updateRenderCanvasSizeByWindowSize">updateRenderCanvasSizeByWindowSize</a></li></ul></li><li><a href="ResourceLoader.html">ResourceLoader</a><ul class='methods'><li data-type='method'><a href="ResourceLoader.html#load">load</a></li></ul></li><li><a href="ResourceLoaderFactory.html">ResourceLoaderFactory</a><ul class='methods'><li data-type='method'><a href="ResourceLoaderFactory.html#.create">create</a></li></ul></li><li><a href="ResourceManager.html">ResourceManager</a><ul class='methods'><li data-type='method'><a href="ResourceManager.html#.addResourceCount">addResourceCount</a></li><li data-type='method'><a href="ResourceManager.html#.getLoadedResourceCount">getLoadedResourceCount</a></li><li data-type='method'><a href="ResourceManager.html#.getTotalResourceCount">getTotalResourceCount</a></li><li data-type='method'><a href="ResourceManager.html#.isAllResourceLoaded">isAllResourceLoaded</a></li><li data-type='method'><a href="ResourceManager.html#.loadResource">loadResource</a></li><li data-type='method'><a href="ResourceManager.html#.onResourceLoad">onResourceLoad</a></li><li data-type='method'><a href="ResourceManager.html#.removeResourceLoadedCallback">removeResourceLoadedCallback</a></li><li data-type='method'><a href="ResourceManager.html#.setAllResourceLoadedCallback">setAllResourceLoadedCallback</a></li></ul></li><li><a href="RigidBody.html">RigidBody</a></li><li><a href="SceneManager.html">SceneManager</a><ul class='methods'><li data-type='method'><a href="SceneManager.html#.changeScene">changeScene</a></li><li data-type='method'><a href="SceneManager.html#.getCurrentScene">getCurrentScene</a></li></ul></li><li><a href="SoundEffect.html">SoundEffect</a><ul class='methods'><li data-type='method'><a href="SoundEffect.html#pause">pause</a></li><li data-type='method'><a href="SoundEffect.html#play">play</a></li><li data-type='method'><a href="SoundEffect.html#setVolumn">setVolumn</a></li><li data-type='method'><a href="SoundEffect.html#stop">stop</a></li></ul></li><li><a href="Sprite.html">Sprite</a><ul class='methods'><li data-type='method'><a href="Sprite.html#activate">activate</a></li><li data-type='method'><a href="Sprite.html#addAcceleration">addAcceleration</a></li><li data-type='method'><a href="Sprite.html#addChild">addChild</a></li><li data-type='method'><a href="Sprite.html#addPosition">addPosition</a></li><li data-type='method'><a href="Sprite.html#addRotation">addRotation</a></li><li data-type='method'><a href="Sprite.html#addScale">addScale</a></li><li data-type='method'><a href="Sprite.html#addVelocity">addVelocity</a></li><li data-type='method'><a href="Sprite.html#afterDraw">afterDraw</a></li><li data-type='method'><a href="Sprite.html#beforeDraw">beforeDraw</a></li><li data-type='method'><a href="Sprite.html#calculateMatrix">calculateMatrix</a></li><li data-type='method'><a href="Sprite.html#deactivate">deactivate</a></li><li data-type='method'><a href="Sprite.html#destroy">destroy</a></li><li data-type='method'><a href="Sprite.html#disableColorOverlay">disableColorOverlay</a></li><li data-type='method'><a href="Sprite.html#draw">draw</a></li><li data-type='method'><a href="Sprite.html#enableColorOverlay">enableColorOverlay</a></li><li data-type='method'><a href="Sprite.html#getAcceleration">getAcceleration</a></li><li data-type='method'><a href="Sprite.html#getBounceness">getBounceness</a></li><li data-type='method'><a href="Sprite.html#getBoundary">getBoundary</a></li><li data-type='method'><a href="Sprite.html#getColliderOffset">getColliderOffset</a></li><li data-type='method'><a href="Sprite.html#getColliderWorldPosition">getColliderWorldPosition</a></li><li data-type='method'><a href="Sprite.html#getDynamicFriction">getDynamicFriction</a></li><li data-type='method'><a href="Sprite.html#getInverseMass">getInverseMass</a></li><li data-type='method'><a href="Sprite.html#getLayer">getLayer</a></li><li data-type='method'><a href="Sprite.html#getMass">getMass</a></li><li data-type='method'><a href="Sprite.html#getMatrix">getMatrix</a></li><li data-type='method'><a href="Sprite.html#getName">getName</a></li><li data-type='method'><a href="Sprite.html#getPosition">getPosition</a></li><li data-type='method'><a href="Sprite.html#getRotation">getRotation</a></li><li data-type='method'><a href="Sprite.html#getScale">getScale</a></li><li data-type='method'><a href="Sprite.html#getSize">getSize</a></li><li data-type='method'><a href="Sprite.html#getStaticFriction">getStaticFriction</a></li><li data-type='method'><a href="Sprite.html#getVelocity">getVelocity</a></li><li data-type='method'><a href="Sprite.html#getWorldBoundary">getWorldBoundary</a></li><li data-type='method'><a href="Sprite.html#getWorldPosition">getWorldPosition</a></li><li data-type='method'><a href="Sprite.html#getWorldRotation">getWorldRotation</a></li><li data-type='method'><a href="Sprite.html#getWorldScale">getWorldScale</a></li><li data-type='method'><a href="Sprite.html#getWorldSize">getWorldSize</a></li><li data-type='method'><a href="Sprite.html#hasParentGameObject">hasParentGameObject</a></li><li data-type='method'><a href="Sprite.html#hide">hide</a></li><li data-type='method'><a href="Sprite.html#integrateForce">integrateForce</a></li><li data-type='method'><a href="Sprite.html#integrateVelocity">integrateVelocity</a></li><li data-type='method'><a href="Sprite.html#isLeftMouseClickThis">isLeftMouseClickThis</a></li><li data-type='method'><a href="Sprite.html#isMouseOver">isMouseOver</a></li><li data-type='method'><a href="Sprite.html#isRightMouseClickThis">isRightMouseClickThis</a></li><li data-type='method'><a href="Sprite.html#multiplyParentMatrix">multiplyParentMatrix</a></li><li data-type='method'><a href="Sprite.html#onCollision">onCollision</a></li><li data-type='method'><a href="Sprite.html#removeChild">removeChild</a></li><li data-type='method'><a href="Sprite.html#removeParent">removeParent</a></li><li data-type='method'><a href="Sprite.html#render">render</a></li><li data-type='method'><a href="Sprite.html#setAcceleration">setAcceleration</a></li><li data-type='method'><a href="Sprite.html#setName">setName</a></li><li data-type='method'><a href="Sprite.html#setOverlayColor">setOverlayColor</a></li><li data-type='method'><a href="Sprite.html#setParent">setParent</a></li><li data-type='method'><a href="Sprite.html#setPosition">setPosition</a></li><li data-type='method'><a href="Sprite.html#setRotation">setRotation</a></li><li data-type='method'><a href="Sprite.html#setScale">setScale</a></li><li data-type='method'><a href="Sprite.html#setTransform">setTransform</a></li><li data-type='method'><a href="Sprite.html#setVelocity">setVelocity</a></li><li data-type='method'><a href="Sprite.html#show">show</a></li><li data-type='method'><a href="Sprite.html#update">update</a></li><li data-type='method'><a href="Sprite.html#updateSize">updateSize</a></li></ul></li><li><a href="TerrainLayer.html">TerrainLayer</a><ul class='methods'><li data-type='method'><a href="TerrainLayer.html#canPhysicsInteractLayerWith">canPhysicsInteractLayerWith</a></li></ul></li><li><a href="Text.html">Text</a><ul class='methods'><li data-type='method'><a href="Text.html#activate">activate</a></li><li data-type='method'><a href="Text.html#addAcceleration">addAcceleration</a></li><li data-type='method'><a href="Text.html#addChild">addChild</a></li><li data-type='method'><a href="Text.html#addPosition">addPosition</a></li><li data-type='method'><a href="Text.html#addRotation">addRotation</a></li><li data-type='method'><a href="Text.html#addScale">addScale</a></li><li data-type='method'><a href="Text.html#addVelocity">addVelocity</a></li><li data-type='method'><a href="Text.html#afterDraw">afterDraw</a></li><li data-type='method'><a href="Text.html#beforeDraw">beforeDraw</a></li><li data-type='method'><a href="Text.html#calculateMatrix">calculateMatrix</a></li><li data-type='method'><a href="Text.html#deactivate">deactivate</a></li><li data-type='method'><a href="Text.html#destroy">destroy</a></li><li data-type='method'><a href="Text.html#draw">draw</a></li><li data-type='method'><a href="Text.html#getAcceleration">getAcceleration</a></li><li data-type='method'><a href="Text.html#getBounceness">getBounceness</a></li><li data-type='method'><a href="Text.html#getBoundary">getBoundary</a></li><li data-type='method'><a href="Text.html#getColliderOffset">getColliderOffset</a></li><li data-type='method'><a href="Text.html#getColliderWorldPosition">getColliderWorldPosition</a></li><li data-type='method'><a href="Text.html#getDynamicFriction">getDynamicFriction</a></li><li data-type='method'><a href="Text.html#getInverseMass">getInverseMass</a></li><li data-type='method'><a href="Text.html#getLayer">getLayer</a></li><li data-type='method'><a href="Text.html#getMass">getMass</a></li><li data-type='method'><a href="Text.html#getMatrix">getMatrix</a></li><li data-type='method'><a href="Text.html#getName">getName</a></li><li data-type='method'><a href="Text.html#getPosition">getPosition</a></li><li data-type='method'><a href="Text.html#getRotation">getRotation</a></li><li data-type='method'><a href="Text.html#getScale">getScale</a></li><li data-type='method'><a href="Text.html#getSize">getSize</a></li><li data-type='method'><a href="Text.html#getStaticFriction">getStaticFriction</a></li><li data-type='method'><a href="Text.html#getVelocity">getVelocity</a></li><li data-type='method'><a href="Text.html#getWorldBoundary">getWorldBoundary</a></li><li data-type='method'><a href="Text.html#getWorldPosition">getWorldPosition</a></li><li data-type='method'><a href="Text.html#getWorldRotation">getWorldRotation</a></li><li data-type='method'><a href="Text.html#getWorldScale">getWorldScale</a></li><li data-type='method'><a href="Text.html#getWorldSize">getWorldSize</a></li><li data-type='method'><a href="Text.html#hasParentGameObject">hasParentGameObject</a></li><li data-type='method'><a href="Text.html#hide">hide</a></li><li data-type='method'><a href="Text.html#integrateForce">integrateForce</a></li><li data-type='method'><a href="Text.html#integrateVelocity">integrateVelocity</a></li><li data-type='method'><a href="Text.html#isLeftMouseClickThis">isLeftMouseClickThis</a></li><li data-type='method'><a href="Text.html#isMouseOver">isMouseOver</a></li><li data-type='method'><a href="Text.html#isRightMouseClickThis">isRightMouseClickThis</a></li><li data-type='method'><a href="Text.html#multiplyParentMatrix">multiplyParentMatrix</a></li><li data-type='method'><a href="Text.html#onCollision">onCollision</a></li><li data-type='method'><a href="Text.html#parseText">parseText</a></li><li data-type='method'><a href="Text.html#removeChild">removeChild</a></li><li data-type='method'><a href="Text.html#removeParent">removeParent</a></li><li data-type='method'><a href="Text.html#render">render</a></li><li data-type='method'><a href="Text.html#setAcceleration">setAcceleration</a></li><li data-type='method'><a href="Text.html#setFont">setFont</a></li><li data-type='method'><a href="Text.html#setFontSize">setFontSize</a></li><li data-type='method'><a href="Text.html#setLineHeight">setLineHeight</a></li><li data-type='method'><a href="Text.html#setName">setName</a></li><li data-type='method'><a href="Text.html#setParent">setParent</a></li><li data-type='method'><a href="Text.html#setPosition">setPosition</a></li><li data-type='method'><a href="Text.html#setRotation">setRotation</a></li><li data-type='method'><a href="Text.html#setScale">setScale</a></li><li data-type='method'><a href="Text.html#setText">setText</a></li><li data-type='method'><a href="Text.html#setTransform">setTransform</a></li><li data-type='method'><a href="Text.html#setVelocity">setVelocity</a></li><li data-type='method'><a href="Text.html#show">show</a></li><li data-type='method'><a href="Text.html#update">update</a></li></ul></li><li><a href="Timer.html">Timer</a><ul class='methods'><li data-type='method'><a href="Timer.html#getCurrentTime">getCurrentTime</a></li><li data-type='method'><a href="Timer.html#setFixedDeltaTime">setFixedDeltaTime</a></li><li data-type='method'><a href="Timer.html#setFps">setFps</a></li><li data-type='method'><a href="Timer.html#update">update</a></li></ul></li><li><a href="Transform.html">Transform</a><ul class='methods'><li data-type='method'><a href="Transform.html#setSize">setSize</a></li><li data-type='method'><a href="Transform.html#toMatrix">toMatrix</a></li></ul></li><li><a href="UnitLayer.html">UnitLayer</a><ul class='methods'><li data-type='method'><a href="UnitLayer.html#canPhysicsInteractLayerWith">canPhysicsInteractLayerWith</a></li></ul></li><li><a href="Vector.html">Vector</a><ul class='methods'><li data-type='method'><a href="Vector.html#add">add</a></li><li data-type='method'><a href="Vector.html#dot">dot</a></li><li data-type='method'><a href="Vector.html#elementMultiply">elementMultiply</a></li><li data-type='method'><a href="Vector.html#getDegree">getDegree</a></li><li data-type='method'><a href="Vector.html#isEquals">isEquals</a></li><li data-type='method'><a href="Vector.html#length">length</a></li><li data-type='method'><a href="Vector.html#minus">minus</a></li><li data-type='method'><a href="Vector.html#multiply">multiply</a></li><li data-type='method'><a href="Vector.html#normalize">normalize</a></li><li data-type='method'><a href="Vector.html#squareLength">squareLength</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#KEY_STATUS">KEY_STATUS</a></li><li><a href="global.html#findKeyInObjectWithValue">findKeyInObjectWithValue</a></li><li><a href="global.html#getAvailableFpsAndResolution">getAvailableFpsAndResolution</a></li><li><a href="global.html#getAvailableFpsList">getAvailableFpsList</a></li><li><a href="global.html#getAvailableResolution">getAvailableResolution</a></li><li><a href="global.html#getCurrentFps">getCurrentFps</a></li><li><a href="global.html#makeForm">makeForm</a></li><li><a href="global.html#typeCheck">typeCheck</a></li><li><a href="global.html#typeCheckAndClamp">typeCheckAndClamp</a></li><li><a href="global.html#writeErrorMessageOnDocument">writeErrorMessageOnDocument</a></li></ul>
-    
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">BoxCollisionResolver</h1>
-    
-
-    
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>
-        
-            BoxCollisionResolver
-        
-        </h2>
-        
-            <div class="class-description usertext"><p>상자와 상자 또는 상자와 원 사이의 충돌체크 및
-충돌깊이와 반작용방향을 연산하는 책임을 맡는다.</p></div>
-        
-    
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="BoxCollisionResolver"><span class="type-signature"></span>new BoxCollisionResolver<span class="signature">(box)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>주 객체를 등록하여 충돌체크를 진행한다.</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_box-collision-resolver.js.html">core/box-collision-resolver.js</a>, <a href="core_box-collision-resolver.js.html#line14">line 14</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>box</code></td>
-            
-
-            <td class="type">
-            
+    <header class="page-header">
+        <h1 class="package-details">
+            <a class="package-name" href="./">
                 
-<span class="param-type"><a href="GameObject.html">GameObject</a></span>
-
-
-
+                <span>Home</span>
+            </a>
             
-            </td>
-
+        </h1>
+        <h2 class="page-title">Class: <span class="ancestors"></span>BoxCollisionResolver</h2>
+        <div class="page-links">
             
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+            <div class="page-nav-toggle tiny-page-nav-toggle">
+                <input type="checkbox" name="tiny-page-nav-toggle" id="tiny-page-nav-toggle" autocomplete="off"/>
+                <label for="tiny-page-nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
         </div>
-    
+    </header>
+    <nav class="page-nav">
+        <label class="hidden" for="tiny-page-nav"></label>
+        <input class="hidden tiny-page-nav-target" type="checkbox" id="tiny-page-nav" autocomplete="off"/>
+        <div class="nav-content">
+            <h3>Classes</h3><ul class="active"><li class="active"><a href="BoxCollisionResolver.html" class="active">BoxCollisionResolver</a></li><li><a href="CircleCollisionResolver.html">CircleCollisionResolver</a></li><li><a href="Circle.html">Circle</a></li><li><a href="CollisionResolver.html">CollisionResolver</a></li><li><a href="DestroyManager.html">DestroyManager</a></li><li><a href="GameObject.html">GameObject</a></li><li><a href="HTMLManager.html">HTMLManager</a></li><li><a href="InputManager.html">InputManager</a></li><li><a href="LayerManager.html">LayerManager</a></li><li><a href="PhysicsManager.html">PhysicsManager</a></li><li><a href="Rect.html">Rect</a></li><li><a href="RenderManager.html">RenderManager</a></li><li><a href="ResourceLoaderFactory.html">ResourceLoaderFactory</a></li><li><a href="ResourceLoader.html">ResourceLoader</a></li><li><a href="AudioResourceLoader.html">AudioResourceLoader</a></li><li><a href="ImageResourceLoader.html">ImageResourceLoader</a></li><li><a href="ResourceManager.html">ResourceManager</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="Sprite.html">Sprite</a></li><li><a href="Text.html">Text</a></li><li><a href="Collider.html">Collider</a></li><li><a href="BoxCollider.html">BoxCollider</a></li><li><a href="CircleCollider.html">CircleCollider</a></li><li><a href="Color.html">Color</a></li><li><a href="Layer.html">Layer</a></li><li><a href="DefaultLayer.html">DefaultLayer</a></li><li><a href="TerrainLayer.html">TerrainLayer</a></li><li><a href="UnitLayer.html">UnitLayer</a></li><li><a href="Manifold.html">Manifold</a></li><li><a href="Matrix.html">Matrix</a></li><li><a href="RigidBody.html">RigidBody</a></li><li><a href="Transform.html">Transform</a></li><li><a href="Vector.html">Vector</a></li><li><a href="Engine.html">Engine</a></li><li><a href="Particle.html">Particle</a></li><li><a href="ParticleEffect.html">ParticleEffect</a></li><li><a href="SoundEffect.html">SoundEffect</a></li><li><a href="Path.html">Path</a></li><li><a href="Timer.html">Timer</a></li></ul><h3>Globals</h3><ul><li><a href="global.html#KEY_STATUS">KEY_STATUS</a></li><li><a href="global.html#makeForm">makeForm</a></li><li><a href="global.html#getAvailableFpsAndResolution">getAvailableFpsAndResolution</a></li><li><a href="global.html#getAvailableResolution">getAvailableResolution</a></li><li><a href="global.html#getAvailableFpsList">getAvailableFpsList</a></li><li><a href="global.html#getCurrentFps">getCurrentFps</a></li><li><a href="global.html#typeCheck">typeCheck</a></li><li><a href="global.html#typeCheckAndClamp">typeCheckAndClamp</a></li><li><a href="global.html#findKeyInObjectWithValue">findKeyInObjectWithValue</a></li><li><a href="global.html#writeErrorMessageOnDocument">writeErrorMessageOnDocument</a></li></ul>
+        </div>
+    </nav>
+    <main id="main">
+        
+<article class="content-container class-definition">
+    <header class="section-header">
+        <h2 class="page-title subsection-title">Class: <span class="ancestors"></span>BoxCollisionResolver</h2>
+        <h2 class="class-title">상자와 상자 또는 상자와 원 사이의 충돌체크 및
+충돌깊이와 반작용방향을 연산하는 책임을 맡는다.</h2>
+    </header>
+    <section id="description" class="container-overview">
+        <header>
+            <h3 class="hidden">Description</h3>
+            
+        </header>
+        
+    </section>
+    <section id="usage" class="class-usage">
+        <h3 class="subsection-title">Usage</h3>
+        
+            <div class="description"><p>주 객체를 등록하여 충돌체크를 진행한다.</p></div>
+            <div class="class-signature">
+                <pre class="signature name no-highlight">
+                    <code>
+                        new BoxCollisionResolver<span class="signature">(box)</span><span class="type-signature returns"></span>
+                    </code>
+                </pre>
+            </div>
+        
+        <section id="details" class="details">
+    <dl class="details-list">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
-    
-        <h3 class="subsection-title">Extends</h3>
+        
+        
+        
+        
+        
+    <div class="detail tag-implements">
+        <dt>Extends:</dt>
+        
+            <dd><a href="CollisionResolver.html">CollisionResolver</a></dd>
+        
+    </div>
+
+        
+        
+        
+        
+        
+        
+    <div class="detail tag-source">
+        <dt>Source:</dt>
+        
+            <dd><a href="-_src_engine_core_box-collision-resolver.js.html#L14">./src/engine/core/box-collision-resolver.js, line 14</a></dd>
+        
+    </div>
 
         
 
+        
+        
+        
+        
+    </dl>
+</section>
 
-    <ul>
-        <li><a href="CollisionResolver.html">CollisionResolver</a></li>
-    </ul>
+    <section id="params" class="params">
+        <h5 class="subsection-title">Parameters:</h5>
+        <div class="subsection-content">
+            
 
-
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            
+            <th class="last">Description</th>
+        </tr>
+    </thead>
+    <tbody>
     
+        <tr>
+            
+                <td class="name">
+                    <code>
+                        box<span class="signature-attributes"></span>
+                    </code>
+                </td>
+            
 
-    
+            <td class="type">
+    <span class="param-type"><a href="GameObject.html">GameObject</a></span>
+</td>
 
-    
-    
-    
+            
 
-     
-
+            <td class="description last">
+                
+                
+            </td>
+        </tr>
     
+    </tbody>
+</table>
 
-    
+        </div>
+    </section>
 
+
+        
+        
+    </section>
     
+    
+    
+    
+    
+    
+    
+    
+    <section id="methods" class="child-methods">
         <h3 class="subsection-title">Methods</h3>
+        
+            <div class="subsection-content">
+                <article id="isCollideWithBox">
+    <header>
+        <h4 class="name">isCollideWithBox<span class="signature">(box)</span><span class="type-signature returns"> &rarr; {boolean}</span></h4>
+        
+        <div class="description"><p>상자와 상자가 충돌했다면 true를 반환한다.</p></div>
+    </header>
+    <section  class="details">
+    <dl class="details-list">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
         
+        
+        
+        
+        
+    <div class="detail tag-implements">
+        <dt>Extends:</dt>
+        
+            <dd><a href="CollisionResolver.html#isCollideWithBox">CollisionResolver#isCollideWithBox</a></dd>
+        
+    </div>
+
+        
+    <div class="detail tag-overrides">
+        <dt>Overrides:</dt>
+        
+            <dd><a href="CollisionResolver.html#isCollideWithBox">CollisionResolver#isCollideWithBox</a></dd>
+        
+    </div>
+
+        
+        
+        
+        
+        
+    <div class="detail tag-source">
+        <dt>Source:</dt>
+        
+            <dd><a href="-_src_engine_core_box-collision-resolver.js.html#L31">./src/engine/core/box-collision-resolver.js, line 31</a></dd>
+        
+    </div>
+
+        
+
+        
+        
+        
+        
+    </dl>
+</section>
+
+    <section  class="params">
+        <h5 class="subsection-title">Parameters:</h5>
+        <div class="subsection-content">
             
 
-    
-
-    <h4 class="name" id="isCollideWith"><span class="type-signature"></span>isCollideWith<span class="signature">(other)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>다른 객체의 Collider 타입에 맞춰 충돌 감지 방법을 사용하여
-충돌 유무를 반환한다.</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_collision-resolver.js.html">core/collision-resolver.js</a>, <a href="core_collision-resolver.js.html#line34">line 34</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="CollisionResolver.html#isCollideWith">CollisionResolver#isCollideWith</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
+<table>
     <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            
+            <th class="last">Description</th>
+        </tr>
     </thead>
-
     <tbody>
     
-
         <tr>
             
-                <td class="name"><code>other</code></td>
+                <td class="name">
+                    <code>
+                        box<span class="signature-attributes"></span>
+                    </code>
+                </td>
             
 
             <td class="type">
+    <span class="param-type"><a href="GameObject.html">GameObject</a></span>
+</td>
+
             
+
+            <td class="description last">
+                <p>이 객체와 충돌인지 확인할 객체</p>
                 
-<span class="param-type"><a href="GameObject.html">GameObject</a></span>
-
-
-
-            
             </td>
-
-            
-
-            
-
-            <td class="description last"><p>이 객체와 충돌인지 확인할 객체</p></td>
         </tr>
-
     
     </tbody>
 </table>
 
+        </div>
+    </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">boolean</span>
-
-
-
-    </dd>
-</dl>
 
     
-
-
-
+        
+        
+    <section class="returns">
+        
+        <h5 class="subsection-title">Returns:</h5>
         
             
-
+                
+                    
+                    
     
+    <div class="detail tag-type">
+        <dt>Type:</dt>
+        
+            <dd><span class="signature type-signature">{<span class="param-type">boolean</span>}</span></dd>
+        
+    </div>
 
-    <h4 class="name" id="isCollideWithBox"><span class="type-signature"></span>isCollideWithBox<span class="signature">(box)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
 
+                
+            
+        
+    </section>
+
+        
     
-
-
-
-
-<dl class="details">
     
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>상자와 상자가 충돌했다면 true를 반환한다.</p></li></ul></dd>
-    
+</article><article id="isCollideWithCircle">
+    <header>
+        <h4 class="name">isCollideWithCircle<span class="signature">(circle)</span><span class="type-signature returns"> &rarr; {boolean}</span></h4>
+        
+        <div class="description"><p>상자와 원이 충돌했다면 true를 반환한다.</p></div>
+    </header>
+    <section  class="details">
+    <dl class="details-list">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_box-collision-resolver.js.html">core/box-collision-resolver.js</a>, <a href="core_box-collision-resolver.js.html#line31">line 31</a>
-    </li></ul></dd>
-    
+        
+        
+        
+        
+        
+    <div class="detail tag-implements">
+        <dt>Extends:</dt>
+        
+            <dd>CollisionResolver#isCollideWithCircle</dd>
+        
+    </div>
 
-    
+        
+        
+        
+        
+        
+        
+    <div class="detail tag-source">
+        <dt>Source:</dt>
+        
+            <dd><a href="-_src_engine_core_box-collision-resolver.js.html#L58">./src/engine/core/box-collision-resolver.js, line 58</a></dd>
+        
+    </div>
 
-    
+        
 
-    
+        
+        
+        
+        
+    </dl>
+</section>
 
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="CollisionResolver.html#isCollideWithBox">CollisionResolver#isCollideWithBox</a>
-    </li></ul></dd>
-    
+    <section  class="params">
+        <h5 class="subsection-title">Parameters:</h5>
+        <div class="subsection-content">
+            
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
+<table>
     <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            
+            <th class="last">Description</th>
+        </tr>
     </thead>
-
     <tbody>
     
-
         <tr>
             
-                <td class="name"><code>box</code></td>
+                <td class="name">
+                    <code>
+                        circle<span class="signature-attributes"></span>
+                    </code>
+                </td>
             
 
             <td class="type">
+    <span class="param-type"><a href="GameObject.html">GameObject</a></span>
+</td>
+
             
+
+            <td class="description last">
+                <p>이 객체와 충돌인지 확인할 객체</p>
                 
-<span class="param-type"><a href="GameObject.html">GameObject</a></span>
-
-
-
-            
             </td>
-
-            
-
-            
-
-            <td class="description last"><p>이 객체와 충돌인지 확인할 객체</p></td>
         </tr>
-
     
     </tbody>
 </table>
 
+        </div>
+    </section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
+    
         
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
         
-<span class="param-type">boolean</span>
-
-
-
-    </dd>
-</dl>
-
-    
-
-
-
+    <section class="returns">
         
-            
-
-    
-
-    <h4 class="name" id="isCollideWithCircle"><span class="type-signature"></span>isCollideWithCircle<span class="signature">(circle)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>상자와 원이 충돌했다면 true를 반환한다.</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_box-collision-resolver.js.html">core/box-collision-resolver.js</a>, <a href="core_box-collision-resolver.js.html#line58">line 58</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
+        <h5 class="subsection-title">Returns:</h5>
         
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>circle</code></td>
-            
-
-            <td class="type">
             
                 
-<span class="param-type"><a href="GameObject.html">GameObject</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>이 객체와 충돌인지 확인할 객체</p></td>
-        </tr>
-
+                    
+                    
     
-    </tbody>
-</table>
+    <div class="detail tag-type">
+        <dt>Type:</dt>
+        
+            <dd><span class="signature type-signature">{<span class="param-type">boolean</span>}</span></dd>
+        
+    </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
+                
+            
+        
+    </section>
 
         
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
+    
+    
+</article><article id="resolveBoxCollision">
+    <header>
+        <h4 class="name">resolveBoxCollision<span class="signature">(box)</span><span class="type-signature returns"> &rarr; {<a href="Manifold.html">Manifold</a>}</span></h4>
         
-<span class="param-type">boolean</span>
-
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="resolveBoxCollision"><span class="type-signature"></span>resolveBoxCollision<span class="signature">(box)</span><span class="type-signature"> &rarr; {<a href="Manifold.html">Manifold</a>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>상자와 상자가 충돌했을 때 충돌깊이와 반작용방향을 반환한다.</p>
+        <div class="description"><p>상자와 상자가 충돌했을 때 충돌깊이와 반작용방향을 반환한다.</p>
 <pre><code>          +-------+
 +-----+   |       |
 |  x  |   |   x   |
@@ -730,486 +447,539 @@
    +----------+    &lt;-- 중심간의 거리
 </code></pre>
 <p>각 상자의 길이의 절반의 합이 중심간의 거리보다 작을 때에만 충돌이다.
-이 때 충돌한 깊이는 각 길이의 절반의 합과 중심간의 거리의 차로 구해진다.</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_box-collision-resolver.js.html">core/box-collision-resolver.js</a>, <a href="core_box-collision-resolver.js.html#line111">line 111</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
+이 때 충돌한 깊이는 각 길이의 절반의 합과 중심간의 거리의 차로 구해진다.</p></div>
+    </header>
+    <section  class="details">
+    <dl class="details-list">
         
-        <th>Name</th>
+        
+        
+        
+        
+        
+        
+        
+        
         
 
-        <th>Type</th>
+        
+        
+        
+        
+        
+    <div class="detail tag-implements">
+        <dt>Extends:</dt>
+        
+            <dd>CollisionResolver#resolveBoxCollision</dd>
+        
+    </div>
+
+        
+        
+        
+        
+        
+        
+    <div class="detail tag-source">
+        <dt>Source:</dt>
+        
+            <dd><a href="-_src_engine_core_box-collision-resolver.js.html#L111">./src/engine/core/box-collision-resolver.js, line 111</a></dd>
+        
+    </div>
 
         
 
         
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>box</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="GameObject.html">GameObject</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>이 객체와 충돌한 다른 객체</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
         
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
         
-<span class="param-type"><a href="Manifold.html">Manifold</a></span>
-
-
-
-    </dd>
-</dl>
-
-    
-
-
-
         
-            
-
-    
-
-    <h4 class="name" id="resolveCircleCollision"><span class="type-signature"></span>resolveCircleCollision<span class="signature">(circle)</span><span class="type-signature"> &rarr; {<a href="Manifold.html">Manifold</a>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>원이 상자와 충돌했을 때 충돌깊이와 반작용방향을 반환한다.</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_box-collision-resolver.js.html">core/box-collision-resolver.js</a>, <a href="core_box-collision-resolver.js.html#line171">line 171</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>circle</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="GameObject.html">GameObject</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>이 객체와 충돌한 다른 객체</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="Manifold.html">Manifold</a></span>
-
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="resolveCollision"><span class="type-signature"></span>resolveCollision<span class="signature">(other)</span><span class="type-signature"> &rarr; {<a href="Manifold.html">Manifold</a>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>객체의 Collider 타입에 맞춰 manifold를 생성해 반환한다.</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_collision-resolver.js.html">core/collision-resolver.js</a>, <a href="core_collision-resolver.js.html#line48">line 48</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="CollisionResolver.html#resolveCollision">CollisionResolver#resolveCollision</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>other</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="GameObject.html">GameObject</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>이 객체와 충돌한 다른 객체</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="Manifold.html">Manifold</a></span>
-
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-    
-
-    
-
-    
-</article>
-
+    </dl>
 </section>
 
+    <section  class="params">
+        <h5 class="subsection-title">Parameters:</h5>
+        <div class="subsection-content">
+            
 
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            
+            <th class="last">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+                <td class="name">
+                    <code>
+                        box<span class="signature-attributes"></span>
+                    </code>
+                </td>
+            
+
+            <td class="type">
+    <span class="param-type"><a href="GameObject.html">GameObject</a></span>
+</td>
+
+            
+
+            <td class="description last">
+                <p>이 객체와 충돌한 다른 객체</p>
+                
+            </td>
+        </tr>
+    
+    </tbody>
+</table>
+
+        </div>
+    </section>
 
 
     
+        
+        
+    <section class="returns">
+        
+        <h5 class="subsection-title">Returns:</h5>
+        
+            
+                
+                    
+                    
     
-</div>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Fri May 26 2023 02:33:36 GMT+0900 (Korean Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
-</footer>
-
-<script>prettyPrint();</script>
-<script src="scripts/polyfill.js"></script>
-<script src="scripts/linenumber.js"></script>
+    <div class="detail tag-type">
+        <dt>Type:</dt>
+        
+            <dd><span class="signature type-signature">{<span class="param-type"><a href="Manifold.html">Manifold</a></span>}</span></dd>
+        
+    </div>
 
 
+                
+            
+        
+    </section>
 
+        
+    
+    
+</article><article id="resolveCircleCollision">
+    <header>
+        <h4 class="name">resolveCircleCollision<span class="signature">(circle)</span><span class="type-signature returns"> &rarr; {<a href="Manifold.html">Manifold</a>}</span></h4>
+        
+        <div class="description"><p>원이 상자와 충돌했을 때 충돌깊이와 반작용방향을 반환한다.</p></div>
+    </header>
+    <section  class="details">
+    <dl class="details-list">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+    <div class="detail tag-implements">
+        <dt>Extends:</dt>
+        
+            <dd>CollisionResolver#resolveCircleCollision</dd>
+        
+    </div>
+
+        
+        
+        
+        
+        
+        
+    <div class="detail tag-source">
+        <dt>Source:</dt>
+        
+            <dd><a href="-_src_engine_core_box-collision-resolver.js.html#L171">./src/engine/core/box-collision-resolver.js, line 171</a></dd>
+        
+    </div>
+
+        
+
+        
+        
+        
+        
+    </dl>
+</section>
+
+    <section  class="params">
+        <h5 class="subsection-title">Parameters:</h5>
+        <div class="subsection-content">
+            
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            
+            <th class="last">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+                <td class="name">
+                    <code>
+                        circle<span class="signature-attributes"></span>
+                    </code>
+                </td>
+            
+
+            <td class="type">
+    <span class="param-type"><a href="GameObject.html">GameObject</a></span>
+</td>
+
+            
+
+            <td class="description last">
+                <p>이 객체와 충돌한 다른 객체</p>
+                
+            </td>
+        </tr>
+    
+    </tbody>
+</table>
+
+        </div>
+    </section>
+
+
+    
+        
+        
+    <section class="returns">
+        
+        <h5 class="subsection-title">Returns:</h5>
+        
+            
+                
+                    
+                    
+    
+    <div class="detail tag-type">
+        <dt>Type:</dt>
+        
+            <dd><span class="signature type-signature">{<span class="param-type"><a href="Manifold.html">Manifold</a></span>}</span></dd>
+        
+    </div>
+
+
+                
+            
+        
+    </section>
+
+        
+    
+    
+</article><article id="isCollideWith">
+    <header>
+        <h4 class="name">isCollideWith<span class="signature">(other)</span><span class="type-signature returns"> &rarr; {boolean}</span></h4>
+        
+        <div class="description"><p>다른 객체의 Collider 타입에 맞춰 충돌 감지 방법을 사용하여
+충돌 유무를 반환한다.</p></div>
+    </header>
+    <section  class="details">
+    <dl class="details-list">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+    <div class="detail tag-overrides">
+        <dt>Overrides:</dt>
+        
+            <dd><a href="CollisionResolver.html#isCollideWith">CollisionResolver#isCollideWith</a></dd>
+        
+    </div>
+
+        
+        
+        
+        
+        
+    <div class="detail tag-source">
+        <dt>Source:</dt>
+        
+            <dd><a href="-_src_engine_core_collision-resolver.js.html#L34">./src/engine/core/collision-resolver.js, line 34</a></dd>
+        
+    </div>
+
+        
+
+        
+        
+        
+        
+    </dl>
+</section>
+
+    <section  class="params">
+        <h5 class="subsection-title">Parameters:</h5>
+        <div class="subsection-content">
+            
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            
+            <th class="last">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+                <td class="name">
+                    <code>
+                        other<span class="signature-attributes"></span>
+                    </code>
+                </td>
+            
+
+            <td class="type">
+    <span class="param-type"><a href="GameObject.html">GameObject</a></span>
+</td>
+
+            
+
+            <td class="description last">
+                <p>이 객체와 충돌인지 확인할 객체</p>
+                
+            </td>
+        </tr>
+    
+    </tbody>
+</table>
+
+        </div>
+    </section>
+
+
+    
+        
+        
+    <section class="returns">
+        
+        <h5 class="subsection-title">Returns:</h5>
+        
+            
+                
+                    
+                    
+    
+    <div class="detail tag-type">
+        <dt>Type:</dt>
+        
+            <dd><span class="signature type-signature">{<span class="param-type">boolean</span>}</span></dd>
+        
+    </div>
+
+
+                
+            
+        
+    </section>
+
+        
+    
+    
+</article><article id="resolveCollision">
+    <header>
+        <h4 class="name">resolveCollision<span class="signature">(other)</span><span class="type-signature returns"> &rarr; {<a href="Manifold.html">Manifold</a>}</span></h4>
+        
+        <div class="description"><p>객체의 Collider 타입에 맞춰 manifold를 생성해 반환한다.</p></div>
+    </header>
+    <section  class="details">
+    <dl class="details-list">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+    <div class="detail tag-overrides">
+        <dt>Overrides:</dt>
+        
+            <dd><a href="CollisionResolver.html#resolveCollision">CollisionResolver#resolveCollision</a></dd>
+        
+    </div>
+
+        
+        
+        
+        
+        
+    <div class="detail tag-source">
+        <dt>Source:</dt>
+        
+            <dd><a href="-_src_engine_core_collision-resolver.js.html#L48">./src/engine/core/collision-resolver.js, line 48</a></dd>
+        
+    </div>
+
+        
+
+        
+        
+        
+        
+    </dl>
+</section>
+
+    <section  class="params">
+        <h5 class="subsection-title">Parameters:</h5>
+        <div class="subsection-content">
+            
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            
+            <th class="last">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+                <td class="name">
+                    <code>
+                        other<span class="signature-attributes"></span>
+                    </code>
+                </td>
+            
+
+            <td class="type">
+    <span class="param-type"><a href="GameObject.html">GameObject</a></span>
+</td>
+
+            
+
+            <td class="description last">
+                <p>이 객체와 충돌한 다른 객체</p>
+                
+            </td>
+        </tr>
+    
+    </tbody>
+</table>
+
+        </div>
+    </section>
+
+
+    
+        
+        
+    <section class="returns">
+        
+        <h5 class="subsection-title">Returns:</h5>
+        
+            
+                
+                    
+                    
+    
+    <div class="detail tag-type">
+        <dt>Type:</dt>
+        
+            <dd><span class="signature type-signature">{<span class="param-type"><a href="Manifold.html">Manifold</a></span>}</span></dd>
+        
+    </div>
+
+
+                
+            
+        
+    </section>
+
+        
+    
+    
+</article>
+            </div>
+        
+    </section>
+
+    
+    
+    
+</article>
+<aside class="content-aside">
+    
+    
+        <div class="toc-tiny">
+            <h2 class="page-title">Class: <span class="ancestors"></span>BoxCollisionResolver</h2>
+            <details class="content-toc">
+                <summary>Table of Contents</summary>
+                <nav class="content-toc"><ul><li><h5 class="toc-section"><a href="#description">Description</a></h5></li><li><h5 class="toc-section"><a href="#usage">Usage</a></h5><ul><li><a href="#details">Details</a></li><li><a href="#params">Parameters</a></li></ul></li><li><h5 class="toc-section"><a href="#methods">Methods</a></h5><ul><li><a href="#isCollideWithBox">isCollideWithBox</a></li><li><a href="#isCollideWithCircle">isCollideWithCircle</a></li><li><a href="#resolveBoxCollision">resolveBoxCollision</a></li><li><a href="#resolveCircleCollision">resolveCircleCollision</a></li><li><a href="#isCollideWith">isCollideWith</a></li><li><a href="#resolveCollision">resolveCollision</a></li></ul></li></ul></nav>
+            </details>
+        </div>
+        <div class="toc-regular">
+            <nav class="content-nav">
+                <h5 class="toc-title">Table of Contents</h5>
+                <ul><li><h5 class="toc-section"><a href="#description">Description</a></h5></li><li><h5 class="toc-section"><a href="#usage">Usage</a></h5><ul><li><a href="#details">Details</a></li><li><a href="#params">Parameters</a></li></ul></li><li><h5 class="toc-section"><a href="#methods">Methods</a></h5><ul><li><a href="#isCollideWithBox">isCollideWithBox</a></li><li><a href="#isCollideWithCircle">isCollideWithCircle</a></li><li><a href="#resolveBoxCollision">resolveBoxCollision</a></li><li><a href="#resolveCircleCollision">resolveCircleCollision</a></li><li><a href="#isCollideWith">isCollideWith</a></li><li><a href="#resolveCollision">resolveCollision</a></li></ul></li></ul>
+            </nav>
+        </div>
+    
+</aside>
+        <footer>
+            Generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a>
+            using <a href="https://github.com/sleelin/classy-template">classy-template</a>
+            
+                <span class="creation-timestamp">2023-05-27T15:17:44.206Z</span>
+            
+        </footer>
+    </main>
+    <script>hljs.highlightAll();</script>
 </body>
+
 </html>

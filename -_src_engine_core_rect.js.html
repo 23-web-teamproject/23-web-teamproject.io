@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home: Source - ./src/engine/core/rect.js</title>
+    <script src="static/classy.js"></script>
+    <script src="static/highlight/highlight.min.js"></script>
+    <script src="static/highlight/langs/javascript.min.js"></script>
+    <script src="static/highlight/langs/json.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="static/highlight/highlight.min.css">
+    <link type="text/css" rel="stylesheet" href="static/classy.css">
+</head>
+
+<body>
+    <header class="page-header">
+        <h1 class="package-details">
+            <a class="package-name" href="./">
+                
+                <span>Home</span>
+            </a>
+            
+        </h1>
+        <h2 class="page-title">Source: <span class="ancestors"></span>./src/engine/core/rect.js</h2>
+        <div class="page-links">
+            
+            <div class="page-nav-toggle tiny-page-nav-toggle">
+                <input type="checkbox" name="tiny-page-nav-toggle" id="tiny-page-nav-toggle" autocomplete="off"/>
+                <label for="tiny-page-nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+        </div>
+    </header>
+    <nav class="page-nav">
+        <label class="hidden" for="tiny-page-nav"></label>
+        <input class="hidden tiny-page-nav-target" type="checkbox" id="tiny-page-nav" autocomplete="off"/>
+        <div class="nav-content">
+            <h3>Classes</h3><ul><li><a href="BoxCollisionResolver.html">BoxCollisionResolver</a></li><li><a href="CircleCollisionResolver.html">CircleCollisionResolver</a></li><li><a href="Circle.html">Circle</a></li><li><a href="CollisionResolver.html">CollisionResolver</a></li><li><a href="DestroyManager.html">DestroyManager</a></li><li><a href="GameObject.html">GameObject</a></li><li><a href="HTMLManager.html">HTMLManager</a></li><li><a href="InputManager.html">InputManager</a></li><li><a href="LayerManager.html">LayerManager</a></li><li><a href="PhysicsManager.html">PhysicsManager</a></li><li><a href="Rect.html">Rect</a></li><li><a href="RenderManager.html">RenderManager</a></li><li><a href="ResourceLoaderFactory.html">ResourceLoaderFactory</a></li><li><a href="ResourceLoader.html">ResourceLoader</a></li><li><a href="AudioResourceLoader.html">AudioResourceLoader</a></li><li><a href="ImageResourceLoader.html">ImageResourceLoader</a></li><li><a href="ResourceManager.html">ResourceManager</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="Sprite.html">Sprite</a></li><li><a href="Text.html">Text</a></li><li><a href="Collider.html">Collider</a></li><li><a href="BoxCollider.html">BoxCollider</a></li><li><a href="CircleCollider.html">CircleCollider</a></li><li><a href="Color.html">Color</a></li><li><a href="Layer.html">Layer</a></li><li><a href="DefaultLayer.html">DefaultLayer</a></li><li><a href="TerrainLayer.html">TerrainLayer</a></li><li><a href="UnitLayer.html">UnitLayer</a></li><li><a href="Manifold.html">Manifold</a></li><li><a href="Matrix.html">Matrix</a></li><li><a href="RigidBody.html">RigidBody</a></li><li><a href="Transform.html">Transform</a></li><li><a href="Vector.html">Vector</a></li><li><a href="Engine.html">Engine</a></li><li><a href="Particle.html">Particle</a></li><li><a href="ParticleEffect.html">ParticleEffect</a></li><li><a href="SoundEffect.html">SoundEffect</a></li><li><a href="Path.html">Path</a></li><li><a href="Timer.html">Timer</a></li></ul><h3>Globals</h3><ul><li><a href="global.html#KEY_STATUS">KEY_STATUS</a></li><li><a href="global.html#makeForm">makeForm</a></li><li><a href="global.html#getAvailableFpsAndResolution">getAvailableFpsAndResolution</a></li><li><a href="global.html#getAvailableResolution">getAvailableResolution</a></li><li><a href="global.html#getAvailableFpsList">getAvailableFpsList</a></li><li><a href="global.html#getCurrentFps">getCurrentFps</a></li><li><a href="global.html#typeCheck">typeCheck</a></li><li><a href="global.html#typeCheckAndClamp">typeCheckAndClamp</a></li><li><a href="global.html#findKeyInObjectWithValue">findKeyInObjectWithValue</a></li><li><a href="global.html#writeErrorMessageOnDocument">writeErrorMessageOnDocument</a></li></ul>
+        </div>
+    </nav>
+    <main id="main">
+        <article class="content-container source-code">
+    <header class="section-header">
+        <h2 class="page-title subsection-title">Source: <span class="ancestors"></span>./src/engine/core/rect.js</h2>
+    </header>
+    <pre class="prettyprint source linenums"><code>import Color from "/src/engine/data-structure/color.js";
+import Vector from "/src/engine/data-structure/vector.js";
+
+import GameObject from "/src/engine/core/game-object.js";
+
+import { typeCheck, typeCheckAndClamp } from "/src/engine/utils.js";
+
+/**
+ * 화면에 사각형을 그리는 객체다.
+ *
+ * @extends {GameObject}
+ */
+class Rect extends GameObject {
+  /**
+   * @constructor
+   * @param {object} options
+   * @param {string} [options.name]
+   * @param {number} [options.width]
+   * @param {number} [options.height]
+   * @param {boolean} [options.isActive]
+   * @param {boolean} [options.isVisible]
+   * @param {Layer} [options.layer]
+   * @param {Color} [options.color=Random Color]
+   * @param {boolean} [options.isPhysicsEnable=false]
+   * @param {object} [options.boundary]
+   * @param {number} [options.boundary.width]
+   * @param {number} [options.boundary.height]
+   * @param {number} [options.boundary.offset]
+   * @param {object} [options.transform]
+   * @param {Vector} [options.transform.position=new Vector(0, 0)]
+   * @param {Vector} [options.transform.scale=new Vector(1, 1)]
+   * @param {number} [options.transform.rotation=0]
+   * @param {object} [options.rigidbody]
+   * @param {number} [options.rigidbody.mass=1]
+   * @param {number} [options.rigidbody.bounceness=0.5]
+   * @param {number} [options.rigidbody.staticFriction=0.2]
+   * @param {number} [options.rigidbody.dynamicFriction=0.1]
+   * @param {boolean} [options.rigidbody.isStatic=false]
+   * @param {boolean} [options.rigidbody.isGravity=false]
+   * @param {boolean} [options.rigidbody.isTrigger=false]
+   */
+  constructor(options = {}) {
+    // 만약 boundary가 주어지지 않았고 width와 height가 주어졌다면
+    // boundary를 width와 height로 설정한다.
+    if (typeof options.boundary !== "object") {
+      options.boundary = {};
+    }
+    if (typeof options.width === "number") {
+      options.boundary.width = typeCheck(
+        options.boundary.width,
+        "number",
+        options.width
+      );
+    }
+    if (typeof options.height === "number") {
+      options.boundary.height = typeCheck(
+        options.boundary.height,
+        "number",
+        options.height
+      );
+    }
+
+    super(options);
+    /**
+     * 사각형의 가로, 세로를 의미한다.
+     * 기본값은 50이다.
+     * width속성에 저장하지 않고 transform의 size에 저장한다.
+     */
+    this.transform.setSize(
+      new Vector(
+        typeCheck(options.width, "number", 50),
+        typeCheck(options.height, "number", 50)
+      )
+    );
+
+    if (typeof options.boundary !== "object") {
+      options.boundary = new Object();
+    }
+    if (
+      typeof options.boundary.width !== "number" &amp;&amp;
+      typeof options.width === "number"
+    ) {
+      options.boundary.width = typeCheck(options.width, "number", 0);
+    }
+    if (
+      typeof options.boundary.height !== "number" &amp;&amp;
+      typeof options.height === "number"
+    ) {
+      options.boundary.height = typeCheck(options.height, "number", 0);
+    }
+    /**
+     * 윤곽선을 그릴 것인지를 의미한다.
+     * 윤곽선을 그리기 위해서는 옵션에서 strokeColor나
+     * strokeWidth를 설정하여야한다.
+     *
+     * @type {boolean}
+     */
+    this.isStroke =
+      options.hasOwnProperty("strokeColor") ||
+      options.hasOwnProperty("strokeWidth");
+
+    if (this.isStroke) {
+      /**
+       * 윤곽선의 색상을 의미한다.
+       * 만약 옵션에서 윤곽선에 대한 정보가 있다면 isStroke는 true로 설정되고
+       * 윤곽선의 색상이 설정된다.
+       *
+       * @type {Color}
+       */
+      this.strokeColor = typeCheck(
+        options.strokeColor,
+        Color,
+        new Color(
+          Math.random() * 255,
+          Math.random() * 255,
+          Math.random() * 255,
+          1
+        )
+      );
+    }
+    /**
+     * 윤곽선의 두께를 의미한다.
+     * 기본값은 1이다.
+     * 값의 범위는 1 ~ 15다.
+     *
+     * @type {number}
+     */
+    this.setStrokeWidth(options.strokeWidth);
+  }
+
+  /**
+   * 화면에 사각형과 윤곽선을 그린다.
+   */
+  draw() {
+    this.context2d.fillStyle = `rgb(
+      ${this.color.r},
+      ${this.color.g},
+      ${this.color.b}
+      )`;
+    this.context2d.fillRect(
+      -this.getSize().x / 2,
+      -this.getSize().y / 2,
+      this.getSize().x,
+      this.getSize().y
+    );
+
+    // 윤곽선을 그리도록 설정했다면 윤곽선을 렌더링한다.
+    if (this.isStroke) {
+      this.context2d.lineWidth = this.strokeWidth;
+      this.context2d.strokeStyle = `rgb(
+        ${this.strokeColor.r},
+        ${this.strokeColor.g},
+        ${this.strokeColor.b}
+        )`;
+      this.context2d.strokeRect(
+        this.strokeWidth / 2 - this.getSize().x / 2,
+        this.strokeWidth / 2 - this.getSize().y / 2,
+        this.getSize().x - this.strokeWidth,
+        this.getSize().y - this.strokeWidth
+      );
+    }
+  }
+
+  /**
+   * 윤곽선의 두께를 설정한다.
+   *
+   * @param {number} width - 윤곽선의 두께
+   */
+  setStrokeWidth(width) {
+    this.strokeWidth = typeCheckAndClamp(width, "number", 1, 1, 15);
+  }
+}
+
+export default Rect;
+</code></pre>
+</article>
+<script src="static/highlight/langs/line-numbers.min.js"></script>
+<script>hljs.initLineNumbersOnLoad();</script>
+<script>
+    function identifyAndScrollToLines() {
+        document.querySelectorAll(".hljs-ln-numbers").forEach(function (el) {
+            if (window.location.hash === ("#L" + el.dataset.lineNumber)) {
+                el.parentElement.classList.add("selected");
+                el.parentElement.scrollIntoView({behavior: "smooth", inline: "start"});
+            }
+        });
+    }
+    
+    window.addEventListener("load", identifyAndScrollToLines);
+    window.setTimeout(identifyAndScrollToLines, 10);
+</script>
+<aside class="content-aside">
+    
+    
+        <div class="toc-tiny">
+            <h2 class="page-title">Source: <span class="ancestors"></span>./src/engine/core/rect.js</h2>
+        </div>
+    
+</aside>
+        <footer>
+            Generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a>
+            using <a href="https://github.com/sleelin/classy-template">classy-template</a>
+            
+                <span class="creation-timestamp">2023-05-27T15:17:44.522Z</span>
+            
+        </footer>
+    </main>
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>

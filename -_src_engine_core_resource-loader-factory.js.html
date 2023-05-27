@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home: Source - ./src/engine/core/resource-loader-factory.js</title>
+    <script src="static/classy.js"></script>
+    <script src="static/highlight/highlight.min.js"></script>
+    <script src="static/highlight/langs/javascript.min.js"></script>
+    <script src="static/highlight/langs/json.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="static/highlight/highlight.min.css">
+    <link type="text/css" rel="stylesheet" href="static/classy.css">
+</head>
+
+<body>
+    <header class="page-header">
+        <h1 class="package-details">
+            <a class="package-name" href="./">
+                
+                <span>Home</span>
+            </a>
+            
+        </h1>
+        <h2 class="page-title">Source: <span class="ancestors"></span>./src/engine/core/resource-loader-factory.js</h2>
+        <div class="page-links">
+            
+            <div class="page-nav-toggle tiny-page-nav-toggle">
+                <input type="checkbox" name="tiny-page-nav-toggle" id="tiny-page-nav-toggle" autocomplete="off"/>
+                <label for="tiny-page-nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+        </div>
+    </header>
+    <nav class="page-nav">
+        <label class="hidden" for="tiny-page-nav"></label>
+        <input class="hidden tiny-page-nav-target" type="checkbox" id="tiny-page-nav" autocomplete="off"/>
+        <div class="nav-content">
+            <h3>Classes</h3><ul><li><a href="BoxCollisionResolver.html">BoxCollisionResolver</a></li><li><a href="CircleCollisionResolver.html">CircleCollisionResolver</a></li><li><a href="Circle.html">Circle</a></li><li><a href="CollisionResolver.html">CollisionResolver</a></li><li><a href="DestroyManager.html">DestroyManager</a></li><li><a href="GameObject.html">GameObject</a></li><li><a href="HTMLManager.html">HTMLManager</a></li><li><a href="InputManager.html">InputManager</a></li><li><a href="LayerManager.html">LayerManager</a></li><li><a href="PhysicsManager.html">PhysicsManager</a></li><li><a href="Rect.html">Rect</a></li><li><a href="RenderManager.html">RenderManager</a></li><li><a href="ResourceLoaderFactory.html">ResourceLoaderFactory</a></li><li><a href="ResourceLoader.html">ResourceLoader</a></li><li><a href="AudioResourceLoader.html">AudioResourceLoader</a></li><li><a href="ImageResourceLoader.html">ImageResourceLoader</a></li><li><a href="ResourceManager.html">ResourceManager</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="Sprite.html">Sprite</a></li><li><a href="Text.html">Text</a></li><li><a href="Collider.html">Collider</a></li><li><a href="BoxCollider.html">BoxCollider</a></li><li><a href="CircleCollider.html">CircleCollider</a></li><li><a href="Color.html">Color</a></li><li><a href="Layer.html">Layer</a></li><li><a href="DefaultLayer.html">DefaultLayer</a></li><li><a href="TerrainLayer.html">TerrainLayer</a></li><li><a href="UnitLayer.html">UnitLayer</a></li><li><a href="Manifold.html">Manifold</a></li><li><a href="Matrix.html">Matrix</a></li><li><a href="RigidBody.html">RigidBody</a></li><li><a href="Transform.html">Transform</a></li><li><a href="Vector.html">Vector</a></li><li><a href="Engine.html">Engine</a></li><li><a href="Particle.html">Particle</a></li><li><a href="ParticleEffect.html">ParticleEffect</a></li><li><a href="SoundEffect.html">SoundEffect</a></li><li><a href="Path.html">Path</a></li><li><a href="Timer.html">Timer</a></li></ul><h3>Globals</h3><ul><li><a href="global.html#KEY_STATUS">KEY_STATUS</a></li><li><a href="global.html#makeForm">makeForm</a></li><li><a href="global.html#getAvailableFpsAndResolution">getAvailableFpsAndResolution</a></li><li><a href="global.html#getAvailableResolution">getAvailableResolution</a></li><li><a href="global.html#getAvailableFpsList">getAvailableFpsList</a></li><li><a href="global.html#getCurrentFps">getCurrentFps</a></li><li><a href="global.html#typeCheck">typeCheck</a></li><li><a href="global.html#typeCheckAndClamp">typeCheckAndClamp</a></li><li><a href="global.html#findKeyInObjectWithValue">findKeyInObjectWithValue</a></li><li><a href="global.html#writeErrorMessageOnDocument">writeErrorMessageOnDocument</a></li></ul>
+        </div>
+    </nav>
+    <main id="main">
+        <article class="content-container source-code">
+    <header class="section-header">
+        <h2 class="page-title subsection-title">Source: <span class="ancestors"></span>./src/engine/core/resource-loader-factory.js</h2>
+    </header>
+    <pre class="prettyprint source linenums"><code>import ResourceManager from "/src/engine/core/resource-manager.js";
+
+import Path from "/src/engine/utils/path.js";
+import { writeErrorMessageOnDocument } from "/src/engine/utils.js";
+import { ResourceNotFoundError } from "/src/engine/utils/error.js";
+
+/**
+ * 추상 팩토리 패턴을 사용하여 원하는 리소스를 로드하는
+ * ResourceLoader 클래스를 생성해 반환한다.
+ */
+class ResourceLoaderFactory {
+  constructor() {}
+
+  /**
+   *
+   * @param {string} path - 리소스의 경로
+   * @param {Audio|Image} Element - 리소스를 생성할 객체의 타입
+   * @param {function} callback - 리소스가 생성된 이후에 실행할 콜백함수
+   * @returns {Class.&lt;ResourceLoader>}
+   */
+  static create(path, constructor, callback) {
+    if (constructor.name === "Audio") {
+      return new AudioResourceLoader(path, constructor.name, callback);
+    } else if (constructor.name === "Image") {
+      return new ImageResourceLoader(path, constructor.name, callback);
+    }
+  }
+}
+
+/**
+ * 리소스를 생성해 반환하는 추상클래스다.
+ * 이 객체를 상속받은 하위 클래스에서 구체적인 생성방법을 정의한다.
+ */
+class ResourceLoader {
+  /**
+   * 생성자명에 따른 기본 리소스명을 의미한다.
+   * 만약 리소스의 경로가 주어지지 않았다면 이 객체를 이용해
+   * 기본 리소스를 생성하게 된다.
+   *
+   * @type {object}
+   * @static
+   */
+  static defaultResourcePath = {
+    Image: "defaultSpriteImage.png",
+    Audio: "defaultSoundEffect.wav",
+  };
+
+  /**
+   * @constructor
+   * @param {string} path - 리소스의 경로
+   * @param {string} constructorName - 리소스를 생성할 생성자명
+   * @param {function} callback - 리소스가 생성된 이후에 실행할 콜백함수
+   */
+  constructor(path, constructorName, callback) {
+    this.callback = callback;
+    if (typeof path === "string") {
+      this.path = Path.convertToAbsoluteAssetPath(path);
+    } else {
+      this.path =
+        "/src/engine/assets/" +
+        ResourceLoader.defaultResourcePath[constructorName];
+    }
+  }
+
+  /**
+   * 이 클래스를 상속했다면 load()를 재정의하여
+   * 구체적인 리소스 생성방법을 정의해야한다.
+   *
+   * @abstract
+   */
+  load() {}
+
+  addErrorEventListener() {
+    this.resource.addEventListener("error", () => {
+      writeErrorMessageOnDocument(new ResourceNotFoundError(this.path));
+    });
+  }
+}
+
+/**
+ * AudioElement를 생성해 반환한다.
+ *
+ * @extends ResourceLoader
+ */
+class AudioResourceLoader extends ResourceLoader {
+  /**
+   * @constructor
+   * @param {string} path - 리소스의 경로
+   * @param {string} constructorName - 리소스를 생성할 생성자명
+   * @param {function} callback - 리소스가 생성된 이후에 실행할 콜백함수
+   */
+  constructor(path, constructorName, callback) {
+    super(path, constructorName, callback);
+  }
+
+  /**
+   * AudioElement를 생성해 반환한다.
+   *
+   * @returns {HTMLAudioElement}
+   */
+  load() {
+    this.resource = new Audio(this.path);
+    ResourceManager.addResourceCount(1);
+
+    this.resource.addEventListener("loadeddata", () => {
+      ResourceManager.onResourceLoad(1);
+      this.callback();
+    });
+
+    this.addErrorEventListener();
+
+    return this.resource;
+  }
+}
+
+/**
+ * ImageElement를 생성해 반환한다.
+ *
+ * @extends ResourceLoader
+ */
+class ImageResourceLoader extends ResourceLoader {
+  /**
+   * @constructor
+   * @param {string} path - 리소스의 경로
+   * @param {string} constructorName - 리소스를 생성할 생성자명
+   * @param {function} callback - 리소스가 생성된 이후에 실행할 콜백함수
+   */
+  constructor(path, constructorName, callback) {
+    super(path, constructorName, callback);
+  }
+
+  /**
+   * ImageElement를 생성해 반환한다.
+   * @returns {HTMLImageElement}
+   */
+  load() {
+    this.resource = new Image();
+    this.resource.src = this.path;
+    ResourceManager.addResourceCount(1);
+
+    this.resource.addEventListener("load", () => {
+      ResourceManager.onResourceLoad(1);
+      this.callback();
+    });
+
+    this.addErrorEventListener();
+
+    return this.resource;
+  }
+}
+
+export default ResourceLoaderFactory;
+</code></pre>
+</article>
+<script src="static/highlight/langs/line-numbers.min.js"></script>
+<script>hljs.initLineNumbersOnLoad();</script>
+<script>
+    function identifyAndScrollToLines() {
+        document.querySelectorAll(".hljs-ln-numbers").forEach(function (el) {
+            if (window.location.hash === ("#L" + el.dataset.lineNumber)) {
+                el.parentElement.classList.add("selected");
+                el.parentElement.scrollIntoView({behavior: "smooth", inline: "start"});
+            }
+        });
+    }
+    
+    window.addEventListener("load", identifyAndScrollToLines);
+    window.setTimeout(identifyAndScrollToLines, 10);
+</script>
+<aside class="content-aside">
+    
+    
+        <div class="toc-tiny">
+            <h2 class="page-title">Source: <span class="ancestors"></span>./src/engine/core/resource-loader-factory.js</h2>
+        </div>
+    
+</aside>
+        <footer>
+            Generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a>
+            using <a href="https://github.com/sleelin/classy-template">classy-template</a>
+            
+                <span class="creation-timestamp">2023-05-27T15:17:44.528Z</span>
+            
+        </footer>
+    </main>
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>
