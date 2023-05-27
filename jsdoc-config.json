@@ -5,14 +5,17 @@
     "excludePattern": "node_modules/"
   },
   "sourceType": "module",
-  "plugins": ["plugins/markdown"],
+  "plugins": [
+    "plugins/markdown",
+    "classy-template/plugin"
+  ],
   "opts": {
     "encoding": "utf8",
     "readme": "./README.md",
     "destination": "./docs",
     "recurse": true,
     "verbose": true,
-    "template": "./node_modules/docdash",
+    "template": "./node_modules/classy-template",
     "theme_opts": {
       "default_theme": "dark"
     }
