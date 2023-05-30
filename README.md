@@ -8,4 +8,4 @@
 
 [Jsdoc](https://github.com/jsdoc/jsdoc)과 [classy-template](https://github.com/sleelin/classy-template) 템플릿을 사용하여 작성하였습니다.
 
-:warning: 몇몇 속성이나 함수는 제대로된 설명을 제공하지 않을 수 있습니다.
+⚠️ 몇몇 속성이나 함수는 제대로된 설명을 제공하지 않을 수 있습니다.
